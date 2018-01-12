@@ -4,7 +4,9 @@
   "description": "Touchpoint Software",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "compile": "webpack",
+    "start": "node server.js"
   },
   "keywords": [],
   "author": "Jared Greene",
@@ -19,7 +21,11 @@
   "homepage": "https://github.com/jaredgreene1/touchpoint#readme",
   "dependencies": {
     "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
     "babel-preset-latest": "^6.24.1",
-    "babel-preset-react": "^6.24.1"
+    "babel-preset-react": "^6.24.1",
+    "express": "^4.16.2",
+    "webpack": "^3.10.0",
+    "webpack-dev-middleware": "^2.0.4"
   }
 }
