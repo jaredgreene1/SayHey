@@ -1,0 +1,20 @@
+{
+  "name": "touchpoint",
+  "version": "1.0.0",
+  "description": "Touchpoint Software",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Jared Greene",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jaredgreene1/touchpoint.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jaredgreene1/touchpoint/issues"
+  },
+  "homepage": "https://github.com/jaredgreene1/touchpoint#readme"
+}
