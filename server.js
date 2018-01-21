@@ -1,4 +1,5 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpack = require('webpack');
 const webpackConfig = require('./webpack.config.js');
@@ -6,7 +7,7 @@ const webpackConfig = require('./webpack.config.js');
 const userData = require('./user-data.js');
 
 const app = express();
-
+app.use(bodyParser.json());
 
 
 const compiler = webpack(webpackConfig);
@@ -32,14 +33,13 @@ const server = app.listen(3000, function() {
 
 app.post('/contact-data/upload', function (req, res){
   console.log("Request received on route '/contact-data/upload'");
+  userData.createContact(req.body);
   res.send("Contact information uploaded!");
 });
 
-app.get('/load-contacts', function (req, res){
-  console.log("Request received on route '/contact-data'");
+app.get('/contact-data/load', function (req, res){
+  console.log("Request received on route '/contact-data/load'");
   const contactData = userData.loadContacts();
-  console.log("LOADED INFO");
-  console.log(contactData);
   res.send(contactData);
 
 });

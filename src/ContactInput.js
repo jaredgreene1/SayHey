@@ -17,8 +17,8 @@ class ContactInput extends React.Component {
       {
         name: '',
         email: '',
-        telNumb: '',
-        contactFreq: null
+        phoneNumber: '',
+        contactFrequency: null
       }
     };
   
@@ -34,7 +34,7 @@ class ContactInput extends React.Component {
       {
         name: '',
         email: '',
-        telNumb: '',
+        phoneNumber: '',
         contactFreq: null
       }
     });
@@ -72,15 +72,15 @@ class ContactInput extends React.Component {
           <br /> 
           
           <label> Phone number:  
-            <input name="telNumb" type="tel" 
-              value={this.state.contactInfo['telNumb']} 
+            <input name="phoneNumber" type="tel" 
+              value={this.state.contactInfo['phoneNumber']} 
               onChange={this.handleChange}/>
           </label>
           <br /> 
 
           <label> Contact frequency:  
-            <select name="contactFreq" type="select" 
-            value={this.state.contactInfo['contactFreq']} 
+            <select name="contactFrequency" type="select" 
+            value={this.state.contactInfo['contactFrequency']} 
             onChange={this.handleChange}>
               <option> SELECT FREQUENCY </option>
               <option> weekly </option>

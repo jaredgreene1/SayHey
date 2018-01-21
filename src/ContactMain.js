@@ -3,7 +3,6 @@ import ContactCard from './ContactCard';
 import ContactInput from './ContactInput';
 import axios from 'axios';
 
-
 const contactListStyle = {
   display: "flex",
   flexWrap: "wrap"
@@ -23,8 +22,12 @@ class ContactMain extends React.Component {
 
   newContactCallback(contactData) {
     console.log("New contact:");
-    console.log(contactData);
-    axios.post("/contact-data/upload", contactData).then((result) => {
+    console.log(JSON.stringify(contactData));
+    axios({
+      method: 'post',
+      url: "/contact-data/upload", 
+      headers: {'Content-Type': 'application/json'},
+      data: JSON.stringify(contactData)
     });
     this.state.contacts.push(contactData);
     this.setState({contacts: this.state.contacts})
