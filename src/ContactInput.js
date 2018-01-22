@@ -1,4 +1,6 @@
 import React from 'react';
+import axios from 'axios';
+
 import ContactCard from './ContactCard';
 
 
@@ -21,11 +23,11 @@ class ContactInput extends React.Component {
         contactFrequency: null
       }
     };
-  
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.resetForm = this.resetForm.bind(this);
+		this.uploadContact = this.uploadContact.bind(this);
   }
 
   resetForm() {
@@ -46,9 +48,23 @@ class ContactInput extends React.Component {
     this.state.contactInfo[event.target.name] = event.target.value;
     this.setState({contactInfo: this.state.contactInfo});
   }
+
+
+  uploadContact(contactData) {                                        
+    console.log("New contact:");                                           
+    console.log(JSON.stringify(contactData));                              
+    axios({                                                                
+      method: 'post',                                                      
+      url: "/contact-data/upload",                                         
+      headers: {'Content-Type': 'application/json'},                       
+      data: JSON.stringify(contactData)                                    
+    });                                                                    
+  }  
+
+
   
   handleSubmit(event) {
-    this.props.addContactCallback(this.state.contactInfo);
+    this.uploadContact(this.state.contactInfo);
     this.resetForm()
     event.preventDefault();
   }
@@ -80,14 +96,14 @@ class ContactInput extends React.Component {
 
           <label> Contact frequency:  
             <select name="contactFrequency" type="select" 
-            value={this.state.contactInfo['contactFrequency']} 
+            value={this.state.contactInfo['contactFrequency'] || 'undefined'} 
             onChange={this.handleChange}>
-              <option> SELECT FREQUENCY </option>
-              <option> weekly </option>
-              <option> monthly </option>
-              <option> quarterly </option>
-              <option> semi-annually </option>
-              <option> annually </option>
+              <option value='undefined'> SELECT FREQUENCY </option>
+              <option value='weekly'> weekly </option>
+              <option value='monthly'> monthly </option>
+              <option value='quarterly'> quarterly </option>
+              <option value='semi-annually'> semi-annually </option>
+              <option value='annually'> annually </option>
             </select>
           </label>
           <br /> 

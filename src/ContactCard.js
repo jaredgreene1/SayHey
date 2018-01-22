@@ -22,26 +22,26 @@ class ContactCard extends React.Component {
     return (
       <div className="contact-card" style={cardStyle}>
         <label className="name">
-          <text style={{fontWeight:"bold"}}> Name: </text> 
+          <em style={{fontWeight:"bold"}}> Name: </em> 
           {this.props.contactInfo['name']}
         </label>
         <br />
 
         <label>
-          <text style={{fontWeight:"bold"}}> Email address: </text> 
+          <em style={{fontWeight:"bold"}}> Email address: </em> 
           {this.props.contactInfo['email']} 
         </label>
         <br/>
 
         <label>
-          <text style={{fontWeight:"bold"}}> Phone number: </text> 
-          {this.props.contactInfo['telNumb']} 
+          <em style={{fontWeight:"bold"}}> Phone number: </em> 
+          {this.props.contactInfo['phoneNumber']} 
         </label>
         <br />
 
         <label>
-          <text style={{fontWeight:"bold"}}> Contact frequency: </text> 
-          {this.props.contactInfo['contactFreq']} 
+          <em style={{fontWeight:"bold"}}> Contact frequency: </em> 
+          {this.props.contactInfo['contactFrequency']} 
         </label>
         <br />
 
