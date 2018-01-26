@@ -1,12 +1,14 @@
-console.log('Hello World!');
+import { BrowserRouter, Route, Link } from 'react-router-dom';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ContactMain from './ContactMain';
+import App from './App.js';
 
 document.addEventListener('DOMContentLoaded', function() {
-  ReactDOM.render(
-    React.createElement(ContactMain),
-    document.getElementById('mount')
+  ReactDOM.render((
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+   ), document.getElementById('mount')
   );
 });
