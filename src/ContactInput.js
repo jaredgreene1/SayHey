@@ -1,15 +1,20 @@
 import React from 'react';
 import axios from 'axios';
 
-import ContactCard from './ContactCard';
 
-
-const contactListStyle = {
+const contactFormStyle = {
   display: "flex",
-  flexWrap: "wrap"
-
+  flexDirection: "column",
+  padding: "10",
+  maxWidth: "500",
+  backgroundColor: "lightblue",
+  borderRadius: "15px"
 }
 
+
+const inputStyle = {padding: "4"}
+
+const inputBoxStyle = {borderRadius: "5px"}
 
 class ContactInput extends React.Component {
   constructor(props) {
@@ -71,47 +76,54 @@ class ContactInput extends React.Component {
 
   render() {
     return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
-          <label> Name:  
-            <input name="name" type="text" 
-              value={this.state.contactInfo['name']} 
-              onChange={this.handleChange}/>
-          </label>
-          <br /> 
-          
-          <label> Email address:  
-            <input name="email" type="text" 
-              value={this.state.contactInfo['email']} 
-              onChange={this.handleChange}/>
-          </label>
-          <br /> 
-          
-          <label> Phone number:  
-            <input name="phoneNumber" type="tel" 
-              value={this.state.contactInfo['phoneNumber']} 
-              onChange={this.handleChange}/>
-          </label>
-          <br /> 
+      <form onSubmit={this.handleSubmit} style={contactFormStyle}>
+        <div style={inputStyle}>
+          <label> Name: </label> 
+          <input name="name"
+            type="text" 
+            value={this.state.contactInfo['name']} 
+            onChange={this.handleChange} 
+            style={inputBoxStyle}/>
+        </div>
 
-          <label> Contact frequency:  
-            <select name="contactFrequency" type="select" 
-            value={this.state.contactInfo['contactFrequency'] || 'undefined'} 
-            onChange={this.handleChange}>
-              <option value='undefined'> SELECT FREQUENCY </option>
-              <option value='weekly'> weekly </option>
-              <option value='monthly'> monthly </option>
-              <option value='quarterly'> quarterly </option>
-              <option value='semi-annually'> semi-annually </option>
-              <option value='annually'> annually </option>
-            </select>
-          </label>
-          <br /> 
-          
-          
-          <input type="submit" value="Submit" />
-        </form>
-      </div>
+        <div style={inputStyle}>
+          <label> Email address: </label> 
+          <input name="email" 
+            type="text"
+            value={this.state.contactInfo['email']}
+            onChange={this.handleChange}
+            style={inputBoxStyle}/>
+        </div>
+
+        <div style={inputStyle}>
+          <label> Phone number: </label> 
+          <input name="phoneNumber"
+            type="tel"
+            value={this.state.contactInfo['phoneNumber']}
+            onChange={this.handleChange}
+            style={inputBoxStyle}/>
+        </div> 
+
+  
+        <div style={inputStyle}>
+          <label> Contact frequency: </label> 
+          <select name="contactFrequency"
+            type="select"
+            value={this.state.contactInfo['contactFrequency'] || 'undefined'}
+            onChange={this.handleChange} 
+            style={inputBoxStyle}>
+            <option value='undefined'> SELECT FREQUENCY </option>
+            <option value='weekly'> weekly </option>
+            <option value='monthly'> monthly </option>
+            <option value='quarterly'> quarterly </option>
+            <option value='semi-annually'> semi-annually </option>
+            <option value='annually'> annually </option>
+          </select>
+        </ div> 
+        
+        
+        <input type="submit" value="Submit" />
+      </form>
     );
   }
 }
