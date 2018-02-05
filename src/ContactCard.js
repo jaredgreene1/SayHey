@@ -1,6 +1,6 @@
 import React from 'react';
 
-import EditButton from './EditButton.js';
+//import EditButton from './EditButton.js';
 
 const hoverStyle = {
   width: "250px",
@@ -25,29 +25,17 @@ class ContactCard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {hovered: false};
-    this.onHover = this.onHover.bind(this);
-    this.onUnhover = this.onUnhover.bind(this);
-    this.getStyle = this.getStyle.bind(this);
   };
 
-  onHover() {
-    this.setState({hovered: true});
-  }
-
-  onUnhover() {
-    this.setState({hovered: false});
-  }
-
-  getStyle() {
-    return this.state.hovered ? hoverStyle : unhoverStyle;
-  }
+  onHover = () => this.setState({hovered: true});
+  onUnhover = () => this.setState({hovered: false});
+  getStyle = () => this.state.hovered ? hoverStyle : unhoverStyle;
 
 
 
   render() {
     return (
       <div className="contact-card" onMouseOut={this.onUnhover} onMouseOver={this.onHover} style={this.getStyle()}>
-        <EditButton /> 
         <label className="name">
           <em style={{fontWeight:"bold"}}> Name: </em> 
           {this.props.contactInfo['name']}
