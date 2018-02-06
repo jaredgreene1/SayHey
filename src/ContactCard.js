@@ -1,66 +1,47 @@
 import React from 'react';
-
-//import EditButton from './EditButton.js';
+import ContactInput from './ContactInput.js';
 
 const hoverStyle = {
-  width: "250px",
+  background: "#FFCD42",
   width: "300px",
   padding: "20px",
-  background: "#FFCD42",
   borderRadius: "25px",
   margin: "10px"
 }
 
 
 const unhoverStyle = {
-  width: "250px",
-  width: "300px",
-  padding: "20px",
   background: "#CFAE53",
-  borderRadius: "25px",
-  margin: "10px"
 }
 
 class ContactCard extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {hovered: false};
+    this.state = {hovered: false, expanded: false};
   };
 
   onHover = () => this.setState({hovered: true});
   onUnhover = () => this.setState({hovered: false});
   getStyle = () => this.state.hovered ? hoverStyle : unhoverStyle;
+  expand = () => this.setState(prevState => ({
+    expanded: !prevState.expanded
+  }));
 
 
 
   render() {
     return (
-      <div className="contact-card" onMouseOut={this.onUnhover} onMouseOver={this.onHover} style={this.getStyle()}>
-        <label className="name">
-          <em style={{fontWeight:"bold"}}> Name: </em> 
-          {this.props.contactInfo['name']}
-        </label>
-        <br />
-
-        <label>
-          <em style={{fontWeight:"bold"}}> Email address: </em> 
-          {this.props.contactInfo['email']} 
-        </label>
-        <br/>
-
-        <label>
-          <em style={{fontWeight:"bold"}}> Phone number: </em> 
-          {this.props.contactInfo['phoneNumber']} 
-        </label>
-        <br />
-
-        <label>
-          <em style={{fontWeight:"bold"}}> Contact frequency: </em> 
-          {this.props.contactInfo['contactFrequency']} 
-        </label>
-        <br />
-
-      </div>
+      <tbody>
+        <tr className="contact-card" onClick = {this.expand} onMouseOut={this.onUnhover} onMouseOver={this.onHover} style={this.getStyle()}>
+          <td> {this.props.contactInfo['name']} </td>
+          <td> {this.props.contactInfo['email']}</td> 
+          <td> {this.props.contactInfo['phoneNumber']} </td>
+          <td> {this.props.contactInfo['contactFrequency']} </td>
+        </tr>
+          {this.state.expanded ? 
+            <tr> <ContactInput data={this.props.contactInfo} update={true} /> </tr> : null
+          }
+      </tbody>
     );
   }
 }

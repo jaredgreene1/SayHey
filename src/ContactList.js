@@ -3,10 +3,12 @@ import axios from 'axios';
 
 import ContactCard from './ContactCard';
 
-const contactListStyle = {
-  display: "flex",
-  flexWrap: "wrap"
+const listStyle = {
+  width:"100%"
 }
+
+const headers = 
+  ["Full Name", "Email Address", "Phone Number", "Proximity"]; 
 
 
 
@@ -14,16 +16,12 @@ class ContactList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
-    
-    this.loadContacts=this.loadContacts.bind(this);
   }
 
-  componentDidMount() {
-    this.loadContacts()
-  }
+  componentDidMount() { this.loadContacts()}
 
-  loadContacts() {
-    console.log("LOADING CONTACTS");
+
+  loadContacts = () =>  {
     axios({
       method: 'get',
       url: '/contact-data/load'
@@ -39,12 +37,18 @@ class ContactList extends React.Component {
   render() {
     if(!this.state.contacts) return <p> Loading contacts... </p>
     return (
-      <div className="contact-list" style={contactListStyle}> {
-          Object.keys(this.state.contacts).map(function(contactKey) {
-            return <ContactCard key={contactKey} 
-            contactInfo={this.state.contacts[contactKey]} /> 
-          }.bind(this))
-        }
+      <div className="contact-list"> 
+        <table style={listStyle}>  
+          <tbody>
+            {headers.map(header => <th> {header} </th>)}
+          </tbody>
+            {
+              Object.keys(this.state.contacts).map(function(contactKey) {
+                return <ContactCard key={contactKey} 
+              contactInfo={this.state.contacts[contactKey]} /> 
+              }.bind(this))
+            }
+        </table>
       </div>
     );
   }

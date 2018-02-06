@@ -14,6 +14,12 @@ exports.createContact = function createContact(data) {
 }
 
 
+exports.editContact = function editContact(data, uuid) {
+  const fileName = data.name + "_" + uuid + '.json';
+  const filePath = path.join(contactPath, fileName);
+  fs.writeFile(filePath, JSON.stringify(data));
+}
+
 exports.loadContacts = function loadContacts() {
   var contactData = {};
   files = fs.readdirSync(contactPath);

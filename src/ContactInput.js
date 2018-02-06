@@ -2,11 +2,11 @@ import React from 'react';
 import axios from 'axios';
 
 
+
 const contactFormStyle = {
   display: "flex",
   flexDirection: "column",
   padding: "10",
-  maxWidth: "500",
   backgroundColor: "lightblue",
   borderRadius: "15px"
 }
@@ -22,11 +22,13 @@ class ContactInput extends React.Component {
     this.state = {
       contactInfo: 
       {
-        name: '',
-        email: '',
-        phoneNumber: '',
-        contactFrequency: null
-      }
+        name: this.props.data['name'],
+        email: this.props.data['email'],
+        phoneNumber: this.props.data['phoneNumb'],
+        contactFrequency: this.props.data['contactFreq'],
+        uuid: this.props.update ? this.props.data['uuid'] : 
+      },
+      update: this.props.update
     };
 
     this.handleChange = this.handleChange.bind(this);
