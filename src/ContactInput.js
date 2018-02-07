@@ -22,11 +22,11 @@ class ContactInput extends React.Component {
     this.state = {
       contactInfo: 
       {
-        name: this.props.data['name'],
-        email: this.props.data['email'],
-        phoneNumber: this.props.data['phoneNumb'],
-        contactFrequency: this.props.data['contactFreq'],
-        uuid: this.props.update ? this.props.data['uuid'] : 
+        name: this.props.name, 
+        email: this.props.email,
+        phoneNumber: this.props.phoneNumb,
+        contactFrequency: this.props.contactFreq
+        //uuid: this.props.update ? this.props.data['uuid'] : 
       },
       update: this.props.update
     };
@@ -129,4 +129,5 @@ class ContactInput extends React.Component {
     );
   }
 }
+
 export default ContactInput;

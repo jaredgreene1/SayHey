@@ -39,7 +39,14 @@ class ContactCard extends React.Component {
           <td> {this.props.contactInfo['contactFrequency']} </td>
         </tr>
           {this.state.expanded ? 
-            <tr> <ContactInput data={this.props.contactInfo} update={true} /> </tr> : null
+            <tr> 
+              <ContactInput
+                name={this.props.contactInfo['name']}
+                email={this.props.contactInfo['email']}
+                phoneNumb={this.props.contactInfo['phoneNumb']}
+                contactFreq={this.props.contactInfo['contactFreq']}
+                update={true} /> 
+            </tr> : null
           }
       </tbody>
     );
