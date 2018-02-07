@@ -43,8 +43,9 @@ class ContactCard extends React.Component {
               <ContactInput
                 name={this.props.contactInfo['name']}
                 email={this.props.contactInfo['email']}
-                phoneNumb={this.props.contactInfo['phoneNumb']}
-                contactFreq={this.props.contactInfo['contactFreq']}
+                phoneNumb={this.props.contactInfo['phoneNumber']}
+                contactFreq={this.props.contactInfo['contactFrequency']}
+                uuid={this.props.contactInfo['uuid']}
                 update={true} /> 
             </tr> : null
           }

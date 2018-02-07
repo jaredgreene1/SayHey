@@ -7,15 +7,7 @@ const contactPath = path.join(userDataPath, 'contacts');
 
 
 exports.createContact = function createContact(data) {
-  const uuid = generateId();
-  const fileName = data.name + "_" + uuid + '.json';
-  const filePath = path.join(contactPath, fileName);
-  fs.writeFile(filePath, JSON.stringify(data));
-}
-
-
-exports.editContact = function editContact(data, uuid) {
-  const fileName = data.name + "_" + uuid + '.json';
+  const fileName = data.uuid + '.json';
   const filePath = path.join(contactPath, fileName);
   fs.writeFile(filePath, JSON.stringify(data));
 }
@@ -28,7 +20,7 @@ exports.loadContacts = function loadContacts() {
  
   contactData = files.reduce(function(dataList, file){
     data = JSON.parse(fs.readFileSync(path.join(contactPath,file)));
-    dataList[path.parse(file).name] = data;
+    dataList[data.uuid] = data;
     console.log("Loading contact data: "); 
     console.log(data);
     return dataList;

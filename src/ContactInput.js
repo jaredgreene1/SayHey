@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 
-
+import uuid from 'uuid/v4';
 
 const contactFormStyle = {
   display: "flex",
@@ -25,8 +25,8 @@ class ContactInput extends React.Component {
         name: this.props.name, 
         email: this.props.email,
         phoneNumber: this.props.phoneNumb,
-        contactFrequency: this.props.contactFreq
-        //uuid: this.props.update ? this.props.data['uuid'] : 
+        contactFrequency: this.props.contactFreq,
+        uuid: this.props.uuid || uuid()
       },
       update: this.props.update
     };
