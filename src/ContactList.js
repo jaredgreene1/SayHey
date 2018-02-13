@@ -3,13 +3,11 @@ import axios from 'axios';
 
 import ContactCard from './ContactCard';
 
-const listStyle = {
-  width:"100%"
+const list = {
+  display: 'flex',
+  flexDirection: 'row',
+  flexWrap: 'wrap'
 }
-
-const headers = 
-  ["Full Name", "Email Address", "Phone Number", "Proximity"]; 
-
 
 
 class ContactList extends React.Component {
@@ -19,7 +17,6 @@ class ContactList extends React.Component {
   }
 
   componentDidMount() { this.loadContacts()}
-
 
   loadContacts = () =>  {
     axios({
@@ -37,18 +34,13 @@ class ContactList extends React.Component {
   render() {
     if(!this.state.contacts) return <p> Loading contacts... </p>
     return (
-      <div className="contact-list"> 
-        <table style={listStyle}>  
-          <tbody>
-            {headers.map(header => <th> {header} </th>)}
-          </tbody>
-            {
-              Object.keys(this.state.contacts).map(function(contactKey) {
-                return <ContactCard key={contactKey} 
-              contactInfo={this.state.contacts[contactKey]} /> 
-              }.bind(this))
-            }
-        </table>
+      <div style={list}> 
+        {
+          Object.keys(this.state.contacts).map(function(contactKey) {
+            return <ContactCard key={contactKey} 
+          contactInfo={this.state.contacts[contactKey]} /> 
+          }.bind(this))
+        }
       </div>
     );
   }

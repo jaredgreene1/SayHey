@@ -1,8 +1,10 @@
 import React from 'react';
 import ContactInput from './ContactInput.js';
+import EditButton from './EditButton.js';
+import ArticleButton from './ArticleButton.js';
 
-const hoverStyle = {
-  background: "#FFCD42",
+const hover = {
+  background: "#489be4",
   width: "300px",
   padding: "20px",
   borderRadius: "25px",
@@ -10,9 +12,17 @@ const hoverStyle = {
 }
 
 
-const unhoverStyle = {
-  background: "#CFAE53",
+const unhover = {
+  background: "#8ac1f1",
+  width: "300px",
+  padding: "20px",
+  borderRadius: "25px",
+  margin: "10px"
 }
+
+
+const name = {textAlign: "center",}
+
 
 class ContactCard extends React.Component {
   constructor(props) {
@@ -22,34 +32,17 @@ class ContactCard extends React.Component {
 
   onHover = () => this.setState({hovered: true});
   onUnhover = () => this.setState({hovered: false});
-  getStyle = () => this.state.hovered ? hoverStyle : unhoverStyle;
-  expand = () => this.setState(prevState => ({
-    expanded: !prevState.expanded
-  }));
-
+  getStyle = () => this.state.hovered ? hover: unhover;
+ 
 
 
   render() {
     return (
-      <tbody>
-        <tr className="contact-card" onClick = {this.expand} onMouseOut={this.onUnhover} onMouseOver={this.onHover} style={this.getStyle()}>
-          <td> {this.props.contactInfo['name']} </td>
-          <td> {this.props.contactInfo['email']}</td> 
-          <td> {this.props.contactInfo['interests']} </td>
-          <td> {this.props.contactInfo['proximity']} </td>
-        </tr>
-          {this.state.expanded ? 
-            <tr> 
-              <ContactInput
-                name={this.props.contactInfo['name']}
-                email={this.props.contactInfo['email']}
-                interests={this.props.contactInfo['interests']}
-                proximity={this.props.contactInfo['proximity']}
-                uuid={this.props.contactInfo['uuid']}
-                update={true} /> 
-            </tr> : null
-          }
-      </tbody>
+      <div className="contact-card" onMouseOut={this.onUnhover} onMouseOver={this.onHover} style={this.getStyle()}>
+        <h1 style={name}> {this.props.contactInfo['name']} </h1>
+        <EditButton contactInfo={this.props.contactInfo} />
+        <ArticleButton contactInfo={this.props.contactInfo} />
+      </div>
     );
   }
 }

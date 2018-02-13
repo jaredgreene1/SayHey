@@ -1,19 +1,42 @@
 import React from 'react' ;
+import Button from './Button.js';
+import ContactInput from './ContactInput.js';
 
-//const pencil = require('./public/pencil_icon.png');
+const buttonText = "edit contact";
 
-class EditButton extends React.component {
+const editButton = {
+  display: 'inline-block'
 
-//  constructor(props) {
-    //super(props);
-//    this.state = {};
-//  }
+}
 
+
+class EditButton extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {editing: false};
+  };
+
+  editContact = () => this.setState(prevState => ({
+    editing: !prevState.editing
+  }));
 
   render() {
     return(
-      <button> edit </button>
-    )
+			<div style={editButton}>
+				<Button callback={this.editContact} text={buttonText}/> 
+				{this.state.editing ?
+					<div>                                                          
+						<ContactInput                                                
+							name={this.props.contactInfo['name']}                      
+							email={this.props.contactInfo['email']}                    
+							interests={this.props.contactInfo['interests']}            
+							proximity={this.props.contactInfo['proximity']}            
+							uuid={this.props.contactInfo['uuid']}                      
+							update={true} />                                           
+					</div> : null                                                  
+				} 
+			</div>
+    );
   }
 }
 
