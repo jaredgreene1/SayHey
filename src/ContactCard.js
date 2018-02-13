@@ -35,16 +35,16 @@ class ContactCard extends React.Component {
         <tr className="contact-card" onClick = {this.expand} onMouseOut={this.onUnhover} onMouseOver={this.onHover} style={this.getStyle()}>
           <td> {this.props.contactInfo['name']} </td>
           <td> {this.props.contactInfo['email']}</td> 
-          <td> {this.props.contactInfo['phoneNumber']} </td>
-          <td> {this.props.contactInfo['contactFrequency']} </td>
+          <td> {this.props.contactInfo['interests']} </td>
+          <td> {this.props.contactInfo['proximity']} </td>
         </tr>
           {this.state.expanded ? 
             <tr> 
               <ContactInput
                 name={this.props.contactInfo['name']}
                 email={this.props.contactInfo['email']}
-                phoneNumb={this.props.contactInfo['phoneNumber']}
-                contactFreq={this.props.contactInfo['contactFrequency']}
+                interests={this.props.contactInfo['interests']}
+                proximity={this.props.contactInfo['proximity']}
                 uuid={this.props.contactInfo['uuid']}
                 update={true} /> 
             </tr> : null

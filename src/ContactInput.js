@@ -3,17 +3,21 @@ import axios from 'axios';
 
 import uuid from 'uuid/v4';
 
-const contactFormStyle = {
+const formStyle = {
   display: "flex",
   flexDirection: "column",
   padding: "10",
   backgroundColor: "lightblue",
-  borderRadius: "15px"
+  borderRadius: "15px",
+  maxWidth: "800"
+
 }
 
+const submitButtonStyle = {
+  width: "100",
+}
 
 const inputStyle = {padding: "4"}
-
 const inputBoxStyle = {borderRadius: "5px"}
 
 class ContactInput extends React.Component {
@@ -24,8 +28,8 @@ class ContactInput extends React.Component {
       {
         name: this.props.name, 
         email: this.props.email,
-        phoneNumber: this.props.phoneNumb,
-        contactFrequency: this.props.contactFreq,
+        interests: this.props.interests,
+        proximity: this.props.proximity,
         uuid: this.props.uuid || uuid()
       },
       update: this.props.update
@@ -43,8 +47,8 @@ class ContactInput extends React.Component {
       {
         name: '',
         email: '',
-        phoneNumber: '',
-        contactFreq: null
+        interests : '',
+        proximity: null
       }
     });
   }
@@ -58,8 +62,6 @@ class ContactInput extends React.Component {
 
 
   uploadContact(contactData) {                                        
-    console.log("New contact:");                                           
-    console.log(JSON.stringify(contactData));                              
     axios({                                                                
       method: 'post',                                                      
       url: "/contact-data/upload",                                         
@@ -78,7 +80,7 @@ class ContactInput extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit} style={contactFormStyle}>
+      <form onSubmit={this.handleSubmit} style={formStyle}>
         <div style={inputStyle}>
           <label> Name: </label> 
           <input name="name"
@@ -98,33 +100,33 @@ class ContactInput extends React.Component {
         </div>
 
         <div style={inputStyle}>
-          <label> Phone number: </label> 
-          <input name="phoneNumber"
-            type="tel"
-            value={this.state.contactInfo['phoneNumber']}
+          <label> Interests (comma seperated): </label> 
+          <input name="interests"
+            type="text"
+            value={this.state.contactInfo['interests']}
             onChange={this.handleChange}
             style={inputBoxStyle}/>
         </div> 
 
   
         <div style={inputStyle}>
-          <label> Contact frequency: </label> 
-          <select name="contactFrequency"
+          <label> How close are you? (1 is least close) </label> 
+          <select name="proximity"
             type="select"
-            value={this.state.contactInfo['contactFrequency'] || 'undefined'}
+            value={this.state.contactInfo['proximity'] || 'undefined'}
             onChange={this.handleChange} 
             style={inputBoxStyle}>
-            <option value='undefined'> SELECT FREQUENCY </option>
-            <option value='weekly'> weekly </option>
-            <option value='monthly'> monthly </option>
-            <option value='quarterly'> quarterly </option>
-            <option value='semi-annually'> semi-annually </option>
-            <option value='annually'> annually </option>
+            <option value='1'> 1 </option>
+            <option value='2'> 2 </option>
+            <option value='3'> 3 </option>
+            <option value='5'> 5 </option>
+            <option value='8'> 8 </option>
+            <option value='13'> 13 </option>
           </select>
         </ div> 
         
         
-        <input type="submit" value="Submit" />
+        <input style={submitButtonStyle} type="submit" value="Submit" />
       </form>
     );
   }
