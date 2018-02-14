@@ -4,8 +4,8 @@ import EditButton from './EditButton.js';
 import ArticleButton from './ArticleButton.js';
 
 const hover = {
-  background: "#489be4",
-  width: "300px",
+  background: "#d1e3f3",
+  maxWidth: "700px",
   padding: "20px",
   borderRadius: "25px",
   margin: "10px"
@@ -14,7 +14,7 @@ const hover = {
 
 const unhover = {
   background: "#8ac1f1",
-  width: "300px",
+  maxWidth: "700px",
   padding: "20px",
   borderRadius: "25px",
   margin: "10px"

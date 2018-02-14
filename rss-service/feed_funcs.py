@@ -17,7 +17,7 @@ def _get_entries(feed_url):
 
 def _get_article_data(entry):
     data_string = ''
-    data_string += entry.summary
+    data_string += entry.get('summary', '')
     return data_string
 
 

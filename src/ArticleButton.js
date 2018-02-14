@@ -10,7 +10,8 @@ const divStyle = {
 }
 
 const articles = {
-  margin: '5px'
+  margin: '15px',
+  textDecoration: 'none'
 
 
 }
@@ -41,9 +42,13 @@ class ArticleButton extends React.Component {
     return(
         <div style={divStyle}>
           <Button callback={this.findArticle} text={buttonText}/> 
-          {this.state.articles.map(function(article){
-              return <a style={articles} href={article.link}> {article.title} </a>;})
-          } 
+          <table>
+            <tbody>
+              {this.state.articles.map(function(article){
+                  return <tr><td><a style={articles} href={article.link}> - {article.title} </a></td></tr>;})
+                } 
+            </tbody>
+          </table>
        </div>
      );
   }
