@@ -4,19 +4,18 @@ import ContactInput from './ContactInput.js';
 import axios from 'axios';
 
 const buttonText = "find an article!";
+const ArticleServiceURL = 'http://localhost:8080/articles_for_contacts';
+
 
 const divStyle = {
   display: 'inline-block'
 }
 
+
 const articles = {
   margin: '15px',
   textDecoration: 'none'
-
-
 }
-
-const ArticleServiceURL = 'http://localhost:8080/articles_for_contacts';
 
 
 class ArticleButton extends React.Component {
@@ -31,12 +30,10 @@ class ArticleButton extends React.Component {
       url: ArticleServiceURL,
       data: JSON.stringify(this.props.contactInfo)
     }).then(response => {
-        console.log("RESPONSE")
-        console.log(response);
-        console.log(response.data[0]);
         this.setState({articles: response.data});
     })
   }
+
 
   render() {
     return(

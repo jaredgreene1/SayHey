@@ -8,7 +8,7 @@ const webpackConfig = require('./webpack.config.js');
 const app = express();
 
 app.use(bodyParser.json());
-require('./routes')(app, {});
+//require('./routes')(app, {});
 
 
 const compiler = webpack(webpackConfig);

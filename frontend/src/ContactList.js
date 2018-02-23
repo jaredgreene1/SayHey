@@ -3,6 +3,9 @@ import axios from 'axios';
 
 import ContactCard from './ContactCard';
 
+const ContactServiceURL = 'http://localhost:3001/contact-data/load'
+
+
 const list = {
   display: 'flex',
   flexDirection: 'row',
@@ -21,7 +24,7 @@ class ContactList extends React.Component {
   loadContacts = () =>  {
     axios({
       method: 'get',
-      url: '/contact-data/load'
+      url: ContactServiceURL, 
     }).then(response => {
       Object.keys(response.data).map(contactKey => {
         if (!this.state.contacts) this.state.contacts = {};

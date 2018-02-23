@@ -1,6 +1,5 @@
 const path = require('path');
 const fs = require('fs');
-const generateId = require('time-uuid');
 
 const userDataPath = path.normalize('./user-data/');
 const contactPath = path.join(userDataPath, 'contacts');
