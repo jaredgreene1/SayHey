@@ -4,6 +4,7 @@ import { Route } from 'react-router-dom';
 import PageHeader from './Header';
 import ContactInput from './ContactInput';
 import ContactList from './ContactList';
+import DashboardList from './DashboardList';
 
 
 class App extends React.Component {
@@ -17,6 +18,7 @@ class App extends React.Component {
         <PageHeader />
         <Route path='/contactform' component={ContactInput} />
         <Route path='/contacts' component={ContactList} />
+        <Route path='/' component={DashboardList} />
       </div>
     );
   }

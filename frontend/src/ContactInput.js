@@ -20,6 +20,10 @@ const submitButtonStyle = {
 const inputStyle = {padding: "4"}
 const inputBoxStyle = {borderRadius: "5px"}
 
+const ContactServiceURL = 'http://localhost:3001/contact-data/upload'
+
+
+
 class ContactInput extends React.Component {
   constructor(props) {
     super(props);
@@ -64,7 +68,7 @@ class ContactInput extends React.Component {
   uploadContact(contactData) {                                        
     axios({                                                                
       method: 'post',                                                      
-      url: "/contact-data/upload",                                         
+      url: ContactServiceURL,
       headers: {'Content-Type': 'application/json'},                       
       data: JSON.stringify(contactData)                                    
     });                                                                    
