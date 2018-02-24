@@ -31,15 +31,14 @@ function getContacts() {
 function getRipeContacts() {
   //Ripe contacts are contacts that it is time to reach out to
   const contacts = getContacts()
-  var ripeContacts = []
+  var ripeContacts = {} 
 
   Object.keys(contacts).map(
     id => {
       const lastContact = 10
       if (contacts[id].proximity * lastContact > 50)
-        ripeContacts.push({id: contacts[id]})
-    })
-  
+        ripeContacts[id] = contacts[id]
+    });
   return ripeContacts;
 
 };

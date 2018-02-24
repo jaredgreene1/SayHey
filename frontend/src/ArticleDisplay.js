@@ -10,12 +10,6 @@ const hover = {
 }
 
 
-const unhover = {
-  width: "100%",
-  padding: "20px",
-  boxShadow: '0 4px 6px 0 hsla(0, 0%, 0%, .6)'
-}
-
 const image = {
   maxHeight: "164px",
   maxWidth: "164px",
@@ -36,24 +30,37 @@ const outerDiv = {
   paddingRight: '15px',
 }
 
+const title = {
+  maxWidth: '164px',
+  textDecoration: 'none',
+  fontSize: 'small',
+}
+
 
 class ArticleDisplay extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {hovered: false, expanded: false};
+    this.state = {image: dummyImage};
   };
 
-  onHover = () => this.setState({hovered: true});
-  onUnhover = () => this.setState({hovered: false});
-  getStyle = () => this.state.hovered ? hover: unhover;
- 
+
+  componentWillMount(){
+    console.log("GOT SOME PROPS!");
+    console.log(this.props);
+    if(this.props.article['media_content'] !== undefined)
+      this.setState({image: this.props.article['media_content'][0]['url']});
+    this.setState({link: this.props.article['link'], title: this.props.article['title']});
+  }
 
 
   render() {
     return (
       <div style={outerDiv}>
-        <img src={dummyImage} style={image} />         
-        <p> dog dog dog </p>
+        <img 
+          src= {this.state.image} 
+          style={image} 
+        />         
+        <a href={this.state.link} style={title}> {this.state.title} </a>
      </div>
     );
   }

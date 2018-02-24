@@ -49,7 +49,7 @@ class DashboardList extends React.Component {
         {
           this.state.contactIds.map(id => {
             return <RipeContactCard key={id} 
-          name={this.state.contacts[id]['name']} /> 
+          contactInfo={this.state.contacts[id]} /> 
           })
         }
       </div>

@@ -1,5 +1,11 @@
 import React from 'react';
+import axios from 'axios';
+
 import ArticleDisplay from './ArticleDisplay' 
+
+
+const ArticleServiceURL = 'http://localhost:8080/articles_for_contacts';   
+  
 
 const articleDiv = {
   width: "auto",
@@ -9,6 +15,7 @@ const articleDiv = {
   display: 'flex',
   flexDirection: 'row',
   marginTop: '-5',
+  overflowX: 'scroll',
 }
 
 
@@ -28,19 +35,34 @@ const outerDiv = {
 class RipeContactCard extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {articles: []};
   };
+
+  componentDidMount() {
+    this.loadArticles()
+  }
+
+  loadArticles = () => {                                                    
+    axios({                                                                
+      method: 'post',                                                      
+      url: ArticleServiceURL,                                              
+      data: JSON.stringify(this.props.contactInfo)                         
+    }).then(response => {                                                  
+        this.setState({articles: response.data});                          
+    })                                                                     
+  }       
 
 
 
   render() {
     return (
       <div style={outerDiv}>
-          <p style={name}> {this.props.name} </p>
+          <p style={name}> {this.props.contactInfo['name']} </p>
         <div className="articles-container" style={articleDiv}>
-          <ArticleDisplay />
-          <ArticleDisplay />
-          <ArticleDisplay />
+					{this.state.articles.map(article => {
+						return <ArticleDisplay article={article} />;
+						})	
+					}
         </div>
      </div>
     );

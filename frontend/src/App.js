@@ -18,7 +18,7 @@ class App extends React.Component {
         <PageHeader />
         <Route path='/contactform' component={ContactInput} />
         <Route path='/contacts' component={ContactList} />
-        <Route path='/' component={DashboardList} />
+        <Route path='/dashboard' component={DashboardList} />
       </div>
     );
   }

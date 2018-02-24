@@ -1,7 +1,6 @@
-node_modules
-www/bundle.js
-/user-data/contacts
-package-lock.json
-service/.pytest_cache/
+*node_modules
+*bundle.js
+/contacts-svc/user-data/contacts
+*pytest_cache/
 *pyc
 *swp
