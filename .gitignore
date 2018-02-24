@@ -4,3 +4,4 @@ www/bundle.js
 package-lock.json
 service/.pytest_cache/
 *pyc
+*swp

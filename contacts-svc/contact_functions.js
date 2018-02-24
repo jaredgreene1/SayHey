@@ -11,7 +11,7 @@ exports.createContact = function createContact(data) {
   fs.writeFile(filePath, JSON.stringify(data));
 }
 
-exports.loadContacts = function loadContacts() {
+function getContacts() {
   var contactData = {};
   files = fs.readdirSync(contactPath);
   console.log("Loading contact files: "); 
@@ -26,3 +26,23 @@ exports.loadContacts = function loadContacts() {
   }, {});
   return contactData;
 };
+
+
+function getRipeContacts() {
+  //Ripe contacts are contacts that it is time to reach out to
+  const contacts = getContacts()
+  var ripeContacts = []
+
+  Object.keys(contacts).map(
+    id => {
+      const lastContact = 10
+      if (contacts[id].proximity * lastContact > 50)
+        ripeContacts.push({id: contacts[id]})
+    })
+  
+  return ripeContacts;
+
+};
+
+exports.getContacts = getContacts 
+exports.getRipeContacts = getRipeContacts
