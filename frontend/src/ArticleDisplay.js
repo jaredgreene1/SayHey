@@ -11,9 +11,7 @@ const hover = {
 
 
 const image = {
-  maxHeight: "164px",
-  maxWidth: "164px",
-  height: 'auto',
+  height: "164px",
   width: 'auto',
     
 }
@@ -27,11 +25,12 @@ const outerDiv = {
   display: 'flex',
   flexDirection: 'column',
   height: 'auto',
+  width: 'auto',
   paddingRight: '15px',
 }
 
 const title = {
-  maxWidth: '164px',
+  width: 'width',
   textDecoration: 'none',
   fontSize: 'small',
 }

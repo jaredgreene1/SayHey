@@ -1,13 +1,50 @@
 import feedparser
+import json
 import functools as ft
 
 from feeds import rss_feeds
+from datetime import datetime
+
+ARTICLE_CACHE = '.article_cache.json'
+CACHE_TIMESTAMP = '.cache_timestamp'
 
 def flatten(nested_list):
     return [item for items in nested_list for item in items] 
 
+
+def _get_cached_articles(cache_file=ARTICLE_CACHE):
+  with open(cache_file, 'r') as cache:
+    articles = json.load(cache)
+  return articles
+
+
+def _should_update_article_cache(timestamp=CACHE_TIMESTAMP): 
+  date = datetime.today().strftime('%b %d %Y')
+
+  try:
+    with open(timestamp, 'r') as ts:
+      return False if date in ts.readline() else True
+
+  except FileNotFoundError:
+    return True
+
+
+def _cache_articles(entries, timestamp=CACHE_TIMESTAMP, cache_file=ARTICLE_CACHE):
+  with open(timestamp, 'w+') as ts:
+    date = datetime.today().strftime('%b %d %Y')
+    ts.write(date)
+
+  with open(cache_file, 'w+') as cache:
+    json.dump(entries, cache)
+
+
+
 def get_feed_articles():
-    entries = flatten(map(_get_entries, rss_feeds.values()))
+    if _should_update_article_cache():
+      entries = flatten(map(_get_entries, rss_feeds.values()))
+      _cache_articles(entries)
+    else:
+      entries = _get_cached_articles()
     return entries
 
 

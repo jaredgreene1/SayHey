@@ -10,7 +10,7 @@ const ArticleServiceURL = 'http://localhost:8080/articles_for_contacts';
 const articleDiv = {
   width: "auto",
   padding: "20px",
-  boxShadow: '0 4px 6px 0 hsla(0, 0%, 0%, .2)',
+  boxShadow: 'rgb(30, 30, 30, 0.32) -1px -2px 6px -2px',
   height: "auto",
   display: 'flex',
   flexDirection: 'row',
