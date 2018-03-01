@@ -49,7 +49,10 @@ def get_feed_articles():
 
 
 def _get_entries(feed_url):
+    print("source: {}".format(feed_url))
+    print("collecting articles")
     return feedparser.parse(feed_url).entries
+
 
 
 def _get_article_data(entry):
