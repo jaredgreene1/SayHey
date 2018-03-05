@@ -11,7 +11,7 @@ const hover = {
 
 
 const image = {
-  height: "164px",
+  height: "82px",
   width: 'auto',
     
 }

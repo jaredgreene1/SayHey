@@ -1,11 +1,13 @@
 Features:
-- edit contacts
 - delete contacts
-- increased contact information
+- increased contact information:
   - labels (so you can filter your contacts)
-  - their interests
   - preferred methods of communication
   - location
 - migrate json to db
-- service that uses interests for contacts to recommend articles
-- service that determines whether it is an appropriate time to contact them
+- determines whether it is an appropriate time to reach out 
+
+- logins and users
+- more intelligent article filtering
+
+- suggest events as well
