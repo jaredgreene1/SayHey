@@ -1,16 +1,22 @@
 const path = require('path');
 const fs = require('fs');
 
-const userDataPath = path.normalize('./user-data/');
-const contactPath = path.join(userDataPath, 'contacts');
+const db = require('../db/db.js')
 
-
-exports.createContact = function createContact(data) {
-  const fileName = data.uuid + '.json';
-  const filePath = path.join(contactPath, fileName);
-  fs.writeFile(filePath, JSON.stringify(data));
+function create(userId, data) {
+  db.createContact(userId, data)
 }
 
+function readByUserId(userId, cb) {
+  console.log("contacts.js: read()")
+  db.readContactsByUserId(userId, function(result){
+    console.log("returning data:")
+    console.log(result);
+    cb(result); 
+  })
+}
+
+/*
 function getContacts() {
   var contactData = {};
   files = fs.readdirSync(contactPath);
@@ -45,3 +51,7 @@ function getRipeContacts() {
 
 exports.getContacts = getContacts 
 exports.getRipeContacts = getRipeContacts
+*/
+
+exports.create = create  
+exports.readByUserId = readByUserId

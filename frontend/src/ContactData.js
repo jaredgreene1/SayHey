@@ -39,7 +39,7 @@ class ContactCard extends React.Component {
   render() {
     return (
       <tr className="contact-card" onMouseOut={this.onUnhover} onMouseOver={this.onHover} style={this.getStyle()}>
-        <td> {this.props.contactInfo['name']} </td>
+        <td> {this.props.contactInfo['firstName']} {this.props.contactInfo['lastName']} </td>
         <td> <EditButton contactInfo={this.props.contactInfo} /> </td>
         <td> <ArticleButton contactInfo={this.props.contactInfo} /> </td>
       </tr>

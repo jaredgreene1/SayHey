@@ -6,7 +6,7 @@ import ContactInput from './ContactInput';
 import Button from './Button';
 
 
-const ContactServiceURL = 'http://localhost:3001/contact-data/load'
+const url = 'http://localhost:3001/contacts/read'
 
 
 const list = {
@@ -28,7 +28,7 @@ class ContactList extends React.Component {
   loadContacts = () =>  {
     axios({
       method: 'get',
-      url: ContactServiceURL, 
+      url: url, 
     }).then(response => {
       Object.keys(response.data).map(contactKey => {
         if (!this.state.contacts) this.state.contacts = {};

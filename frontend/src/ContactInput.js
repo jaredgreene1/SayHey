@@ -1,8 +1,6 @@
 import React from 'react';
 import axios from 'axios';
 
-import uuid from 'uuid/v4';
-
 const formStyle = {
   display: "flex",
   flexDirection: "column",
@@ -10,7 +8,6 @@ const formStyle = {
   backgroundColor: "lightblue",
   borderRadius: "15px",
   maxWidth: "800"
-
 }
 
 const submitButtonStyle = {
@@ -20,8 +17,7 @@ const submitButtonStyle = {
 const inputStyle = {padding: "4"}
 const inputBoxStyle = {borderRadius: "5px"}
 
-const ContactServiceURL = 'http://localhost:3001/contact-data/upload'
-
+const baseUrl = 'http://localhost:3001/contacts/'
 
 
 class ContactInput extends React.Component {
@@ -30,13 +26,13 @@ class ContactInput extends React.Component {
     this.state = {
       contactInfo: 
       {
-        name: this.props.name, 
-        email: this.props.email,
+        firstName: this.props.firstName, 
+        lastName: this.props.lastName, 
         interests: this.props.interests,
         proximity: this.props.proximity,
-        uuid: this.props.uuid || uuid()
+        id: this.props.id
       },
-      update: this.props.update
+      update: (this.props.id != null) ? true : false 
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -64,9 +60,11 @@ class ContactInput extends React.Component {
 
 
   uploadContact = (contactData) => {                                        
+    const url = baseUrl + (this.state.update ? 'update' : 'create')
+
     return axios({                                                                
       method: 'post',                                                      
-      url: ContactServiceURL,
+      url: url,
       headers: {'Content-Type': 'application/json'},                       
       data: JSON.stringify(contactData)                                    
     });                                                                    
@@ -85,20 +83,20 @@ class ContactInput extends React.Component {
     return (
       <form onSubmit={this.handleSubmit} style={formStyle}>
         <div style={inputStyle}>
-          <label> Name: </label> 
-          <input name="name"
+          <label> First name: </label> 
+          <input name="firstName"
             type="text" 
-            value={this.state.contactInfo['name']} 
+            value={this.state.contactInfo['firstName']} 
             onChange={this.handleChange} 
             style={inputBoxStyle}/>
         </div>
-
+        
         <div style={inputStyle}>
-          <label> Email address: </label> 
-          <input name="email" 
-            type="text"
-            value={this.state.contactInfo['email']}
-            onChange={this.handleChange}
+          <label> Last name: </label> 
+          <input name="lastName"
+            type="text" 
+            value={this.state.contactInfo['lastName']} 
+            onChange={this.handleChange} 
             style={inputBoxStyle}/>
         </div>
 
