@@ -40,9 +40,7 @@ class ContactInput extends React.Component {
     };
 
     this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
     this.resetForm = this.resetForm.bind(this);
-		this.uploadContact = this.uploadContact.bind(this);
   }
 
   resetForm() {
@@ -65,8 +63,8 @@ class ContactInput extends React.Component {
   }
 
 
-  uploadContact(contactData) {                                        
-    axios({                                                                
+  uploadContact = (contactData) => {                                        
+    return axios({                                                                
       method: 'post',                                                      
       url: ContactServiceURL,
       headers: {'Content-Type': 'application/json'},                       
@@ -76,10 +74,11 @@ class ContactInput extends React.Component {
 
 
   
-  handleSubmit(event) {
-    this.uploadContact(this.state.contactInfo);
-    this.resetForm()
+  handleSubmit = (event) => {
     event.preventDefault();
+    this.uploadContact(this.state.contactInfo).then(
+      this.props.callback());
+    this.resetForm()
   }
 
   render() {

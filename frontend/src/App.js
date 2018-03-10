@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 
-import PageHeader from './Header';
+import NavBar from './NavBar';
 import ContactInput from './ContactInput';
 import ContactList from './ContactList';
 import DashboardList from './DashboardList';
@@ -15,7 +15,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <PageHeader />
+        <NavBar />
         <Route path='/contactform' component={ContactInput} />
         <Route path='/contacts' component={ContactList} />
         <Route path='/dashboard' component={DashboardList} />

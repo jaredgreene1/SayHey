@@ -1,7 +1,10 @@
 import React from 'react';
 import axios from 'axios';
 
-import ContactCard from './ContactCard';
+import ContactData from './ContactData';
+import ContactInput from './ContactInput';
+import Button from './Button';
+
 
 const ContactServiceURL = 'http://localhost:3001/contact-data/load'
 
@@ -11,6 +14,7 @@ const list = {
   flexDirection: 'row',
   flexWrap: 'wrap'
 }
+
 
 
 class ContactList extends React.Component {
@@ -33,17 +37,29 @@ class ContactList extends React.Component {
       this.setState({contacts: this.state.contacts});
     });
   }
+  
+
+  AddContact = () => {
+    this.setState({newContact: true});
+  }
+  
 
   render() {
     if(!this.state.contacts) return <p> Loading contacts... </p>
     return (
-      <div style={list}> 
-        {
-          Object.keys(this.state.contacts).map(function(contactKey) {
-            return <ContactCard key={contactKey} 
-          contactInfo={this.state.contacts[contactKey]} /> 
-          }.bind(this))
-        }
+      <div>  
+        { this.state.newContact ? <ContactInput callback={this.loadContacts}/> : null}
+        <Button text="Add new contact" callback={this.AddContact}/>
+        <table style={list}> 
+          <tbody>
+            {
+              Object.keys(this.state.contacts).map(function(contactKey) {
+                return <ContactData key={contactKey} 
+              contactInfo={this.state.contacts[contactKey]} /> 
+              }.bind(this))
+            }
+          </tbody>
+        </table>
       </div>
     );
   }

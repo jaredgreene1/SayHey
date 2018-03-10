@@ -38,11 +38,11 @@ class ContactCard extends React.Component {
 
   render() {
     return (
-      <div className="contact-card" onMouseOut={this.onUnhover} onMouseOver={this.onHover} style={this.getStyle()}>
-        <h1 style={name}> {this.props.contactInfo['name']} </h1>
-        <EditButton contactInfo={this.props.contactInfo} />
-        <ArticleButton contactInfo={this.props.contactInfo} />
-      </div>
+      <tr className="contact-card" onMouseOut={this.onUnhover} onMouseOver={this.onHover} style={this.getStyle()}>
+        <td> {this.props.contactInfo['name']} </td>
+        <td> <EditButton contactInfo={this.props.contactInfo} /> </td>
+        <td> <ArticleButton contactInfo={this.props.contactInfo} /> </td>
+      </tr>
     );
   }
 }
