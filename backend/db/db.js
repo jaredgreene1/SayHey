@@ -13,7 +13,7 @@ con.connect(function(err) {
   console.log("Database connection establish");
 });
 
-function createContact(userId, data) {
+function createContact(userId, data, cb) {
   const query = 'INSERT INTO Contacts ' +
                   '(userId, firstName, lastName, interests, proximity) ' + 
                   'VALUES (?)'
@@ -22,6 +22,7 @@ function createContact(userId, data) {
   con.query(query, [values], function (err, result) {
     if (err) throw err;
     console.log(result)
+    cb(result)
   })
 }
 

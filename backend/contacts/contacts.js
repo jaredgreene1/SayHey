@@ -3,35 +3,13 @@ const fs = require('fs');
 
 const db = require('../db/db.js')
 
-function create(userId, data) {
-  db.createContact(userId, data)
+function create(userId, data, cb) {
+  db.createContact(userId, data, result => cb(result))
 }
 
 function readByUserId(userId, cb) {
-  console.log("contacts.js: read()")
-  db.readContactsByUserId(userId, function(result){
-    console.log("returning data:")
-    console.log(result);
-    cb(result); 
-  })
+  db.readContactsByUserId(userId, result => cb(result)) 
 }
-
-/*
-function getContacts() {
-  var contactData = {};
-  files = fs.readdirSync(contactPath);
-  console.log("Loading contact files: "); 
-  console.log(files); 
- 
-  contactData = files.reduce(function(dataList, file){
-    data = JSON.parse(fs.readFileSync(path.join(contactPath,file)));
-    dataList[data.uuid] = data;
-    console.log("Loading contact data: "); 
-    console.log(data);
-    return dataList;
-  }, {});
-  return contactData;
-};
 
 
 function getRipeContacts() {
@@ -48,10 +26,6 @@ function getRipeContacts() {
   return ripeContacts;
 
 };
-
-exports.getContacts = getContacts 
-exports.getRipeContacts = getRipeContacts
-*/
 
 exports.create = create  
 exports.readByUserId = readByUserId

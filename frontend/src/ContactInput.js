@@ -59,7 +59,7 @@ class ContactInput extends React.Component {
   }
 
 
-  uploadContact = (contactData) => {                                        
+  uploadContact = (contactData, cb) => {                                        
     const url = baseUrl + (this.state.update ? 'update' : 'create')
 
     return axios({                                                                
@@ -67,15 +67,14 @@ class ContactInput extends React.Component {
       url: url,
       headers: {'Content-Type': 'application/json'},                       
       data: JSON.stringify(contactData)                                    
-    });                                                                    
+    }).then(cb);                                                                    
   }  
 
 
   
   handleSubmit = (event) => {
     event.preventDefault();
-    this.uploadContact(this.state.contactInfo).then(
-      this.props.callback());
+    this.uploadContact(this.state.contactInfo, this.props.callback)
     this.resetForm()
   }
 
