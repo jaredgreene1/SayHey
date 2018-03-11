@@ -62,6 +62,8 @@ const badgeText = {
 const buttonDiv = {
   display: 'flex',
   alignItems: 'center',
+  minWidth: '300px',
+  justifyContent: 'space-between'
 }
 
 const contactDiv = {
