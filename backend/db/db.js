@@ -14,9 +14,7 @@ con.connect(function(err) {
 });
 
 function createContact(userId, data, cb) {
-  const query = 'INSERT INTO Contacts ' +
-                  '(userId, firstName, lastName, interests, proximity) ' + 
-                  'VALUES (?)'
+  const query = 'INSERT INTO Contacts (userId, firstName, lastName, interests, proximity) VALUES (?)'
   const values = [userId, data.firstName, data.lastName, data.interests, data.proximity]
 
   con.query(query, [values], function (err, result) {
@@ -35,8 +33,22 @@ function readContactsByUserId(userId, cb) {
   });
 }
 
+
+function updateContact(data, cb) {
+  console.log("CHECK")
+  console.log(data)
+  const query = 'UPDATE Contacts SET ? WHERE ?' 
+  const values = [data, {id: data.id}]
+  con.query(query, values, function (err, result) {
+    if(err) throw err;
+    cb(result);
+  });
+}
+
+
+
 exports.createContact = createContact
 exports.readContactsByUserId = readContactsByUserId 
-
+exports.updateContact = updateContact
 
 

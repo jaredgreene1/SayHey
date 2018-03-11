@@ -26,13 +26,7 @@ class EditButton extends React.Component {
 				<Button callback={this.editContact} text={buttonText}/> 
 				{this.state.editing ?
 					<div>                                                          
-						<ContactInput                                                
-							name={this.props.contactInfo['name']}                      
-							email={this.props.contactInfo['email']}                    
-							interests={this.props.contactInfo['interests']}            
-							proximity={this.props.contactInfo['proximity']}            
-							uuid={this.props.contactInfo['uuid']}                      
-							update={true} />                                           
+						<ContactInput contactInfo={this.props.contactInfo} />                                           
 					</div> : null                                                  
 				} 
 			</div>

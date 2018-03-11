@@ -39,9 +39,8 @@ class ContactList extends React.Component {
   }
   
 
-  AddContact = () => {
-    this.setState({newContact: true});
-  }
+  AddContact = () => this.setState(
+    prevState => ({ newContact: !prevState.newContact}));
   
 
   render() {

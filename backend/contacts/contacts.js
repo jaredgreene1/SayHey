@@ -11,21 +11,19 @@ function readByUserId(userId, cb) {
   db.readContactsByUserId(userId, result => cb(result)) 
 }
 
+function update(data, cb) {
+  db.updateContact(data, result => cb(result)) 
+}
 
-function getRipeContacts() {
-  //Ripe contacts are contacts that it is time to reach out to
-  const contacts = getContacts()
-  var ripeContacts = {} 
 
-  Object.keys(contacts).map(
-    id => {
-      const lastContact = 10
-      if (contacts[id].proximity * lastContact > 50)
-        ripeContacts[id] = contacts[id]
-    });
-  return ripeContacts;
-
+function getRipeContacts(userId, cb) {
+  db.readContactsByUserId(
+    userId, result => cb(result.filter(contact => contact.proximity > 5))
+  )
 };
+
 
 exports.create = create  
 exports.readByUserId = readByUserId
+exports.update = update
+exports.getRipeContacts = getRipeContacts

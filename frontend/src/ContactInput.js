@@ -23,35 +23,48 @@ const baseUrl = 'http://localhost:3001/contacts/'
 class ContactInput extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      contactInfo: 
-      {
-        firstName: this.props.firstName, 
-        lastName: this.props.lastName, 
-        interests: this.props.interests,
-        proximity: this.props.proximity,
-        id: this.props.id
-      },
-      update: (this.props.id != null) ? true : false 
-    };
-
-    this.handleChange = this.handleChange.bind(this);
-    this.resetForm = this.resetForm.bind(this);
+    console.log(this.props)
+    console.log(typeof(this.props.contactInfo))
+    
+    if (this.props.contactInfo == undefined) {
+      this.state = {
+        contactInfo: {
+          firstName: '',
+          lastName: '',
+          interests: '',
+          proximity: ''
+        },
+        update: false
+      }
+    } else {
+      this.state = {
+        contactInfo: 
+        {
+          firstName: this.props.contactInfo['firstName'], 
+          lastName: this.props.contactInfo['lastName'], 
+          interests: this.props.contactInfo['interests'],
+          proximity: this.props.contactInfo['proximity'],
+          id: this.props.contactInfo['id']
+        },
+        update: true 
+      }
+    } 
   }
 
-  resetForm() {
+  resetForm = () => {
     this.setState({
       contactInfo: 
       {
-        name: '',
-        email: '',
+        firstName: '',
+        lastName: '',
         interests : '',
-        proximity: null
-      }
+        proximity: 1
+      },
+      update: false
     });
   }
 
-  handleChange(event) {
+  handleChange = (event) => {
     console.log(event)
     console.log(event.target)
     this.state.contactInfo[event.target.name] = event.target.value;

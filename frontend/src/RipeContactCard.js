@@ -57,7 +57,7 @@ class RipeContactCard extends React.Component {
   render() {
     return (
       <div style={outerDiv}>
-          <p style={name}> {this.props.contactInfo['name']} </p>
+          <p style={name}> {this.props.contactInfo['firstName']} </p>
         <div className="articles-container" style={articleDiv}>
 					{this.state.articles.map(article => {
 						return <ArticleDisplay article={article} />;

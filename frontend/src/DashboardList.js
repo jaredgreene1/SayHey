@@ -10,7 +10,7 @@ const list = {
 }
 
 
-const ContactServiceURL = 'http://localhost:3001/contact-data/ripe-contacts'
+const url = 'http://localhost:3001/contacts/ripe'
 
 
 class DashboardList extends React.Component {
@@ -24,13 +24,9 @@ class DashboardList extends React.Component {
   loadContacts = () =>  {
     axios({
       method: 'get',
-      url: ContactServiceURL, 
+      url: url, 
     }).then(response => {
       Object.keys(response.data).map(contactId => {
-        console.log("contact data: ")
-        console.log(response.data)
-        console.log("id:")
-        console.log(contactId)
         if (!this.state.contacts) {
           this.state.contacts = {};
           this.state.contactIds = [];
