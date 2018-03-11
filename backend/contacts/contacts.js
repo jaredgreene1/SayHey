@@ -22,8 +22,13 @@ function getRipeContacts(userId, cb) {
   )
 };
 
+function logComm(data, cb) {
+  console.log(data)
+  db.createCommEvent(data, result => cb(result))
+};
 
 exports.create = create  
 exports.readByUserId = readByUserId
 exports.update = update
 exports.getRipeContacts = getRipeContacts
+exports.logComm = logComm

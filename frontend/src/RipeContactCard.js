@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 
 import ArticleDisplay from './ArticleDisplay' 
+import CommInput from './CommInput'
 import Button from './Button'
 
 const ArticleServiceURL = 'http://localhost:8080/articles_for_contacts';   
@@ -94,7 +95,13 @@ export default class RipeContactCard extends React.Component {
   }       
 
   toggleArticles = () => this.setState(prevState => ({
-    showArticles: !prevState.showArticles
+    showArticles: !prevState.showArticles,
+    logComm: false
+  }));
+
+  toggleComm = () => this.setState(prevState => ({
+    logComm: !prevState.logComm,
+    showArticles: false
   }));
 
 
@@ -107,17 +114,27 @@ export default class RipeContactCard extends React.Component {
             <p style={name}> {this.props.contactInfo['firstName']} </p>
           </div>
           <div style={buttonDiv}>
-            <Button style={articleButton} text={"Content for " + this.props.contactInfo['firstName']} callback={this.toggleArticles} />
+
+            <Button style={articleButton} callback={this.toggleArticles}
+              text={"Content for " + this.props.contactInfo['firstName']}
+            />
+
+            <Button style={articleButton} callback={this.toggleComm}
+              text={"Spoke to " + this.props.contactInfo['firstName'] + '?'}
+            />
+
           </div>
         </div>
       { this.state.showArticles ? 
         <div className="articles-container" style={articleDiv}>
           {this.state.articles.map(article => {
-            return <ArticleDisplay article={article} />;
-            })	
+            return <ArticleDisplay article={article} />;})	
           }
         </div> : null
       }
+
+      { this.state.logComm ? <CommInput contactInfo={this.props.contactInfo} /> : null }
+
      </div>
     );
   }

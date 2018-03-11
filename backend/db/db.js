@@ -35,7 +35,6 @@ function readContactsByUserId(userId, cb) {
 
 
 function updateContact(data, cb) {
-  console.log("CHECK")
   console.log(data)
   const query = 'UPDATE Contacts SET ? WHERE ?' 
   const values = [data, {id: data.id}]
@@ -46,9 +45,27 @@ function updateContact(data, cb) {
 }
 
 
+function createCommEvent(data, cb) {
+  const query = 'INSERT INTO CommunicationEvents (date, contactID) VALUES (?)' 
+  const values = [data.comEvent.date, data.contactInfo.id]
+  con.query(query, [values], function (err, result) {
+    if(err) throw err;
+    cb(result);
+  });
+}
+
+function readCommEventsByContactId(contactID, cb) {
+  const query = 'SELECT * FROM CommunicationEvents WHERE contactID = ?'  
+  con.query(query, [contactID], function (err, result) {
+    if(err) throw err;
+    cb(result);
+  });
+}
+
 
 exports.createContact = createContact
 exports.readContactsByUserId = readContactsByUserId 
 exports.updateContact = updateContact
-
+exports.createCommEvent = createCommEvent 
+exports.readCommEventsByContactId = readCommEventsByContactId 
 
