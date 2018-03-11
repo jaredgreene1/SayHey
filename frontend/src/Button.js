@@ -6,7 +6,8 @@ const button = {
   margin: '2',
   border: '0',
   padding: '7px',
-  background: '#ebeeff'
+  background: '#ebeeff',
+  height: 'fit-content'
 }
 
 

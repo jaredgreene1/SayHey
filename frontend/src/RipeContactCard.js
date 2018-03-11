@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 
 import ArticleDisplay from './ArticleDisplay' 
-
+import Button from './Button'
 
 const ArticleServiceURL = 'http://localhost:8080/articles_for_contacts';   
   
@@ -28,11 +28,52 @@ const outerDiv = {
   flexDirection: 'column',
   height: "auto",
   width: "auto",
-  marginBottom: '35px',
+  marginBottom: '15px',
+  borderBottom: '0.2px solid rgba(165, 192, 236, 0.54)',
+}
+
+const contactInfoDiv = {
+  display: 'flex',
+  flexDirection: 'row',
+  height: "auto",
+  width: "auto",
+  alignItems: 'center',
+}
+  
+const badgeDiv = {
+    display: 'flex',
+    height: '40px',
+    width: '40px',
+    justifyContent: 'center',
+    background: '#e0e0e069',
+    borderRadius: '100%',
+    marginRight: '20px',
+}
+
+const badgeText = {
+  fontSize: '30',
+  alignSelf: 'center',
+  color: '#908e8e',
+  font: 'icon',
+  
+}
+
+const buttonDiv = {
+  display: 'flex',
+  alignItems: 'center',
+}
+
+const contactDiv = {
+  display: 'flex',
+  justifyContent: 'space-between',
+}
+
+const articleButton = {
+  marginLeft: '75%',
 }
 
 
-class RipeContactCard extends React.Component {
+export default class RipeContactCard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {articles: []};
@@ -52,21 +93,49 @@ class RipeContactCard extends React.Component {
     })                                                                     
   }       
 
+  toggleArticles = () => this.setState(prevState => ({
+    showArticles: !prevState.showArticles
+  }));
 
 
   render() {
     return (
-      <div style={outerDiv}>
-          <p style={name}> {this.props.contactInfo['firstName']} </p>
-        <div className="articles-container" style={articleDiv}>
-					{this.state.articles.map(article => {
-						return <ArticleDisplay article={article} />;
-						})	
-					}
+      <div name='outerDiv' style={outerDiv}>
+        <div name='contactDiv' style={contactDiv}>
+          <div name='contactInfoDiv' style={contactInfoDiv}>
+            <ContactBadge fName={this.props.contactInfo['firstName']} />
+            <p style={name}> {this.props.contactInfo['firstName']} </p>
+          </div>
+          <div style={buttonDiv}>
+            <Button style={articleButton} text={"Content for " + this.props.contactInfo['firstName']} callback={this.toggleArticles} />
+          </div>
         </div>
+      { this.state.showArticles ? 
+        <div className="articles-container" style={articleDiv}>
+          {this.state.articles.map(article => {
+            return <ArticleDisplay article={article} />;
+            })	
+          }
+        </div> : null
+      }
      </div>
     );
   }
 }
 
-export default RipeContactCard;
+
+class ContactBadge extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  
+  
+
+  render() {
+    return ( 
+      <div style={badgeDiv}>
+        <p style={badgeText}> {this.props.fName[0]} </p>
+      </div>
+    )
+  }
+}
