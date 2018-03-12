@@ -4,6 +4,6 @@
 *pytest_cache/
 *pyc
 *swp
-/backend/rss-svc/.article_cache.json
-/backend/rss-svc/.cache_timestamp
+*/.article_cache.json
+*/.cache_timestamp
 
