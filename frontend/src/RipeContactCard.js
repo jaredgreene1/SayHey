@@ -3,7 +3,7 @@ import axios from 'axios';
 
 import ArticleDisplay from './ArticleDisplay' 
 import CommInput from './CommInput'
-import Button from './Button'
+import { Button } from './Buttons'
 
 const ArticleServiceURL = 'http://localhost:8080/articles_for_contacts';   
   

@@ -3,7 +3,7 @@ import axios from 'axios';
 
 import ContactData from './ContactData';
 import ContactInput from './ContactInput';
-import Button from './Button';
+import { Button } from './Buttons';
 
 
 const url = 'http://localhost:3001/contacts/read'

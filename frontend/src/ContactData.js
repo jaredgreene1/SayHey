@@ -1,7 +1,6 @@
 import React from 'react';
 import ContactInput from './ContactInput.js';
-import EditButton from './EditButton.js';
-import ArticleButton from './ArticleButton.js';
+import { EditButton } from './Buttons.js';
 
 const hover = {
   background: "#d1e3f3",
@@ -41,7 +40,6 @@ class ContactCard extends React.Component {
       <tr className="contact-card" onMouseOut={this.onUnhover} onMouseOver={this.onHover} style={this.getStyle()}>
         <td> {this.props.contactInfo['firstName']} {this.props.contactInfo['lastName']} </td>
         <td> <EditButton contactInfo={this.props.contactInfo} /> </td>
-        <td> <ArticleButton contactInfo={this.props.contactInfo} /> </td>
       </tr>
     );
   }
