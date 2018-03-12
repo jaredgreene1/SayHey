@@ -15,6 +15,10 @@ function update(data, cb) {
   db.updateContact(data, result => cb(result)) 
 }
 
+function del(data, cb) {
+  console.log(data)
+  db.deleteContact(data, result => cb(result)) 
+}
 
 function getRipeContacts(userId, cb) {
   db.readContactsByUserId(
@@ -30,5 +34,6 @@ function logComm(data, cb) {
 exports.create = create  
 exports.readByUserId = readByUserId
 exports.update = update
+exports.del = del 
 exports.getRipeContacts = getRipeContacts
 exports.logComm = logComm

@@ -2,6 +2,7 @@ import React from 'react';
 
 
 const button = {
+  display: 'flex',
   borderRadius: '10px',
   margin: '2',
   border: '0',
@@ -25,13 +26,15 @@ class Button extends React.Component {
 
 
 import ContactInput from './ContactInput.js';
-const buttonText = "edit contact";
 const editButton = {display: 'inline-block'}
 
 class EditButton extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {editing: false};
+    this.state = {
+      editing: false,
+      text: 'edit contact'
+    };
   };
 
   editContact = () => this.setState(prevState => ({
@@ -41,7 +44,7 @@ class EditButton extends React.Component {
   render() {
     return(
 			<div style={editButton}>
-				<Button callback={this.editContact} text={buttonText}/> 
+				<Button callback={this.editContact} text={this.state.text}/> 
 				{this.state.editing ?
 					<div>                                                          
 						<ContactInput contactInfo={this.props.contactInfo} />                                           
@@ -52,7 +55,38 @@ class EditButton extends React.Component {
   }
 }
 
+
+import axios from 'axios';
+class DeleteContactButton extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {text: 'delete contact'};
+  };
+  
+
+  deleteContact = () => {
+    const url = 'http://localhost:3001/contacts/delete'
+    
+    return axios({
+      method: 'post',
+      url: url,
+      headers: {'Content-Type': 'application/json'},
+      data: JSON.stringify(this.props.contactInfo)
+    }).then(this.props.cb)
+  }
+
+
+
+  render() {
+    return(
+				<Button callback={this.deleteContact} text={this.state.text}/> 
+    );
+  }
+}
+
+
 export {
   Button,
-  EditButton
+  EditButton,
+  DeleteContactButton
 }

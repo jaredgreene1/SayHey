@@ -48,7 +48,6 @@ class NavBar extends React.Component {
       <div>
         <nav style= {navBarStyle}>
           <HeaderButton path="/dashboard" label="Dashboard" />
-          <HeaderButton path="/contactform" label="Add contact" />
           <HeaderButton path="/contacts" label="Contacts" />
         </nav>
       </div>

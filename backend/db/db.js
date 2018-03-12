@@ -26,13 +26,12 @@ function createContact(userId, data, cb) {
 
 function readContactsByUserId(userId, cb) {
   console.log("readContactsByUserId for user " + userId);
-  const query = 'SELECT * from Contacts WHERE  userId = ?'  
+  const query = 'SELECT * from Contacts WHERE userId = ? AND deleted_at is NULL'  
   con.query(query, [userId], function (err, result) {
     if (err) throw err;
     cb(result);
   });
 }
-
 
 function updateContact(data, cb) {
   console.log(data)
@@ -44,6 +43,14 @@ function updateContact(data, cb) {
   });
 }
 
+function deleteContact(data, cb) {
+  console.log(data)
+  const query = 'UPDATE Contacts SET deleted_at = NOW() WHERE id = ?' 
+  con.query(query, data.id, function (err, result) {
+    if(err) throw err;
+    cb(result);
+  });
+}
 
 function createCommEvent(data, cb) {
   const query = 'INSERT INTO CommunicationEvents (date, contactID) VALUES (?)' 
@@ -68,4 +75,5 @@ exports.readContactsByUserId = readContactsByUserId
 exports.updateContact = updateContact
 exports.createCommEvent = createCommEvent 
 exports.readCommEventsByContactId = readCommEventsByContactId 
+exports.deleteContact = deleteContact 
 

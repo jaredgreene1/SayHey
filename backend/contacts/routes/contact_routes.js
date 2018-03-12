@@ -21,6 +21,11 @@ module.exports = (app, db) => {
     contacts.update(req.body, result => res.send(result));
   });
 
+  app.post(baseUrl + '/delete', function (req, res){
+    console.log("Request received on route '/contacts/delete'");
+    contacts.del(req.body, result => res.send(result));
+  });
+
   app.get(baseUrl + '/ripe', function (req, res){
     console.log("Request received on route '/contacts/ripe'");
     contacts.getRipeContacts(USER_ID, result => res.send(result));
@@ -30,7 +35,6 @@ module.exports = (app, db) => {
     console.log("Request received on route '/contacts/logComm'");
     contacts.logComm(req.body, result => res.send(result));
   });
-
 
 };
 

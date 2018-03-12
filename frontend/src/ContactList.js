@@ -44,21 +44,26 @@ class ContactList extends React.Component {
   
 
   render() {
-    if(!this.state.contacts) return <p> Loading contacts... </p>
     return (
       <div>  
         { this.state.newContact ? <ContactInput callback={this.loadContacts}/> : null}
         <Button text="Add new contact" callback={this.AddContact}/>
-        <table style={list}> 
-          <tbody>
-            {
-              Object.keys(this.state.contacts).map(function(contactKey) {
-                return <ContactData key={contactKey} 
-              contactInfo={this.state.contacts[contactKey]} /> 
-              }.bind(this))
-            }
-          </tbody>
-        </table>
+        { !this.state.contacts ? <p> Loading contacts... </p> :
+          <table style={list}> 
+            <tbody>
+              {
+                Object.keys(this.state.contacts).map(function(contactKey) {
+                  return (
+                    <ContactData key={contactKey} 
+                      contactInfo={this.state.contacts[contactKey]} 
+                      refreshList={this.loadContacts}
+                    />
+                 ) 
+                }.bind(this))
+              }
+            </tbody>
+          </table>
+        }
       </div>
     );
   }
