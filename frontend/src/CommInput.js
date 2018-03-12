@@ -14,7 +14,10 @@ const submitButtonStyle = {
   width: "100",
 }
 
-const inputStyle = {padding: "4"}
+const inputStyle = {
+  padding: "4",
+  display: 'flex',
+}
 const inputBoxStyle = {borderRadius: "5px"}
 
 const url = 'http://localhost:3001/contacts/logComm'
@@ -65,6 +68,16 @@ class CommInput extends React.Component {
             style={inputBoxStyle}/>
         </div>
         
+        <div style={inputStyle}>
+          <label> Description: </label> 
+          <textarea name="description"
+            cols='50'
+            rows='10'
+            value={this.state.comEvent['description']} 
+            onChange={this.handleChange} 
+            style={inputBoxStyle}/>
+        </div>
+
         <input style={submitButtonStyle} type="submit" value="Submit" />
       </form>
     );

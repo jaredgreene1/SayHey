@@ -53,8 +53,8 @@ function deleteContact(data, cb) {
 }
 
 function createCommEvent(data, cb) {
-  const query = 'INSERT INTO CommunicationEvents (date, contactID) VALUES (?)' 
-  const values = [data.comEvent.date, data.contactInfo.id]
+  const query = 'INSERT INTO CommunicationEvents (date, description, contactID) VALUES (?)' 
+  const values = [data.comEvent.date, data.comEvent.description, data.contactInfo.id]
   con.query(query, [values], function (err, result) {
     if(err) throw err;
     cb(result);
