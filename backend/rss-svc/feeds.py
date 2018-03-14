@@ -8,7 +8,8 @@ rss_feeds = {
     'economist_comps-and-tech': 'http://www.economist.com/topics/computer-technology/index.xml',
     'economist_corp-governance': 'http://www.economist.com/topics/corporate-governance/index.xml',
     'science-daily_engineering': 'https://www.sciencedaily.com/rss/matter_energy/engineering.xml',
-    'tech-crunch_startups': 'http://feeds.feedburner.com/TechCrunch/startups'
+    'tech-crunch_startups': 'http://feeds.feedburner.com/TechCrunch/startups',
+    'aljazeera': 'https://www.aljazeera.com/xml/rss/all.xml'
 }
 
 
