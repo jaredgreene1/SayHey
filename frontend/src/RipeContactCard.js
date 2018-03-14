@@ -113,7 +113,7 @@ export default class RipeContactCard extends React.Component {
         <div name='contactDiv' style={contactDiv}>
           <div name='contactInfoDiv' style={contactInfoDiv}>
             <ContactBadge fName={this.props.contactInfo['firstName']} />
-            <p style={name}> {this.props.contactInfo['firstName']} </p>
+            <p style={name}> {this.props.contactInfo['firstName']} {this.props.contactInfo['lastName']} </p>
           </div>
           <div style={buttonDiv}>
 
