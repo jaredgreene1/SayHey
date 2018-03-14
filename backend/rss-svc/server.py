@@ -24,4 +24,4 @@ app = web.Application()
 app.router.add_post('/articles_for_contacts', handle)
 
 
-web.run_app(app, host='127.0.0.1', port=8080)
+web.run_app(app, host='127.0.0.1', port=3002)
