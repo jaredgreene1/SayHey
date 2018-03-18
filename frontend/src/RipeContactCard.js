@@ -5,7 +5,7 @@ import ArticleDisplay from './ArticleDisplay'
 import CommInput from './CommInput'
 import { Button } from './Buttons'
 
-const ArticleServiceURL = 'http://localhost:8080/articles_for_contacts';   
+const ArticleServiceURL = 'http://localhost:3002/articles_for_contacts';   
   
 
 const articleDiv = {

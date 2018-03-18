@@ -4,7 +4,7 @@ import ContactInput from './ContactInput.js';
 import axios from 'axios';
 
 const buttonText = "find an article!";
-const ArticleServiceURL = 'http://localhost:8080/articles_for_contacts';
+const ArticleServiceURL = 'http://localhost:3002/articles_for_contacts';
 
 
 const divStyle = {
