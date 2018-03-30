@@ -1,79 +1,65 @@
-var mysql = require('mysql')
+var mysql = require('promise-mysql')
 
-var con = mysql.createConnection({
+
+const config = {
   host: "localhost",
   user: "root",
   password: "touchpoint",
   database: "touchpoint"
-});
+};
 
 
-con.connect(function(err) {
-  if (err) throw err;
-  console.log("Database connection establish");
-});
+function runQuery(query, values) {
+  return new Promise((resolve, reject) => {
+    mysql.createConnection(config).then( (con) => {
+      con.query(query, values).then( result => {
+        resolve(result)
+        con.end()
+      });
+    });
+  });
+}
 
-function createContact(userId, data, cb) {
+
+function createContact(userId, data) {
   const query = 'INSERT INTO Contacts (userId, firstName, lastName, interests, proximity) VALUES (?)'
   const values = [userId, data.firstName, data.lastName, data.interests, data.proximity]
-
-  con.query(query, [values], function (err, result) {
-    if (err) throw err;
-    console.log(result)
-    cb(result)
-  })
+  return runQuery(query, [values]);
 }
 
-function readContactsByUserId(userId, cb) {
-  console.log("readContactsByUserId for user " + userId);
+function readContactsByUserId(userId) {
+  console.log('start read userid db function')
   const query = 'SELECT * from Contacts WHERE userId = ? AND deleted_at is NULL'  
-  con.query(query, [userId], function (err, result) {
-    if (err) throw err;
-    cb(result);
-  });
+  return runQuery(query, [userId])
 }
 
-function updateContact(data, cb) {
-  console.log(data)
+function updateContact(data) {
   const query = 'UPDATE Contacts SET ? WHERE ?' 
   const values = [data, {id: data.id}]
-  con.query(query, values, function (err, result) {
-    if(err) throw err;
-    cb(result);
-  });
+  return runQuery(query, values);
 }
 
-function deleteContact(data, cb) {
-  console.log(data)
+function deleteContact(data) {
   const query = 'UPDATE Contacts SET deleted_at = NOW() WHERE id = ?' 
-  con.query(query, data.id, function (err, result) {
-    if(err) throw err;
-    cb(result);
-  });
+  return runQuery(query, data.id);
 }
 
-function createCommEvent(data, cb) {
+function createCommEvent(data) {
   const query = 'INSERT INTO CommunicationEvents (date, description, contactID) VALUES (?)' 
   const values = [data.comEvent.date, data.comEvent.description, data.contactInfo.id]
-  con.query(query, [values], function (err, result) {
-    if(err) throw err;
-    cb(result);
-  });
+  return runQuery(query, [values])
 }
 
-function readCommEventsByContactId(contactID, cb) {
-  const query = 'SELECT * FROM CommunicationEvents WHERE contactID = ?'  
-  con.query(query, [contactID], function (err, result) {
-    if(err) throw err;
-    cb(result);
-  });
+function readContactEventsByContactId(contactID) {
+  const query = 'SELECT * FROM CommunicationEvents WHERE contactID = ? ORDER BY date DESC'  
+  return runQuery(query, [contactID]);
 }
 
-
-exports.createContact = createContact
-exports.readContactsByUserId = readContactsByUserId 
-exports.updateContact = updateContact
-exports.createCommEvent = createCommEvent 
-exports.readCommEventsByContactId = readCommEventsByContactId 
-exports.deleteContact = deleteContact 
-
+module.exports = {
+  createContact,
+  readContactsByUserId,
+  updateContact,
+  createCommEvent,
+  readContactEventsByContactId,
+  deleteContact
+}
