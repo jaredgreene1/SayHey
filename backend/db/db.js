@@ -1,12 +1,5 @@
-var mysql = require('promise-mysql')
-
-
-const config = {
-  host: "localhost",
-  user: "root",
-  password: "touchpoint",
-  database: "touchpoint"
-};
+const mysql = require('promise-mysql')
+const config = require('./config')
 
 
 function runQuery(query, values) {

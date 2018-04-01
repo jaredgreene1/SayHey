@@ -1,6 +1,3 @@
-const path = require('path');
-const fs = require('fs');
-
 const db = require('../db/db.js')
 
 const MAGIC_RIPENESS_NUMBER = 365
