@@ -16,5 +16,5 @@ get_config = () => {
 }
 
 module.exports = {
-  config: get_config()
+  db: get_config()
 }
