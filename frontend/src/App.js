@@ -16,7 +16,7 @@ class App extends React.Component {
       <div>
         <NavBar />
         <Route path='/contacts' component={ContactList} />
-        <Route path='/dashboard' component={DashboardList} />
+        <Route exact path='/' component={DashboardList} />
       </div>
     );
   }
