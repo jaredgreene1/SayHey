@@ -1,11 +1,20 @@
 const contacts = require('./contacts')
 
+var sample_data = {
+  "deleted_at": null, 
+  "firstName": "Jared", 
+  "id": 1, 
+  "interests": "robots, tech, number!", 
+  "lastName": "Greene", 
+  "proximity": 13, 
+  "userId": 1
+}
 
-
-
-
-test('expects to find 1 contacts in test db', () => {
-  contacts.readByUserId(1).then(result => console.log("result " + result))
-  expect((1+2)).toBe(3);
+test('Reading user contacts', () => {
+  contacts.readByUserId(1).then(contacts => 
+    expect(contacts).toEqual([{"deleted_at": null, "firstName": "Jared", "id": 1, "interests": "robots, tech, number!", "lastName": "Greene", "proximity": 13, "userId": 1}, {"deleted_at": null, "firstName": "Pooja", "id": 2, "interests": "health, brain, public health, diseases, hospital, fashion", "lastName": "Patel", "proximity": 3, "userId": 1}, {"deleted_at": null, "firstName": "Steven", "id": 3, "interests": "advertising, technology, Public relations", "lastName": "Greene", "proximity": 13, "userId": 1}, {"deleted_at": null, "firstName": "Ariel", "id": 4, "interests": "Speech pathology, medicine, speech therapy", "lastName": "Greene", "proximity": 13, "userId": 1}, {"deleted_at": null, "firstName": "Varun", "id": 5, "interests": "consulting, business, men's fashion, cooking", "lastName": "Kumar", "proximity": 8, "userId": 1}, {"deleted_at": null, "firstName": "Elan", "id": 6, "interests": "social justice, democracy, basketball", "lastName": "Joseph", "proximity": 8, "userId": 1}, {"deleted_at": null, "firstName": "John", "id": 7, "interests": "Meditation, social justice, bicycle, biking, meditation", "lastName": "Verghese", "proximity": 8, "userId": 1}, {"deleted_at": null, "firstName": "Hugo", "id": 60, "interests": "Escuela de Gobierno, Guatemala, politics, economics", "lastName": "Maul", "proximity": 3, "userId": 1}, {"deleted_at": null, "firstName": "John", "id": 61, "interests": "Columbia, Mexico, media, political science, latin america", "lastName": "Marshall", "proximity": 8, "userId": 1}, {"deleted_at": null, "firstName": "Noah", "id": 62, "interests": "Guatemala, indigenous, tufts", "lastName": "Gerard-Grossman", "proximity": 5, "userId": 1}, {"deleted_at": null, "firstName": "James", "id": 63, "interests": "Guatemala, Nikhil's friend, nonprofit work, economic development, effective development, wasteful aid", "lastName": "Jensen", "proximity": 3, "userId": 1}, {"deleted_at": null, "firstName": "Stan", "id": 64, "interests": "Jewish, Guatemala, expat, Chicago", "lastName": "Barrish", "proximity": 8, "userId": 1}, {"deleted_at": null, "firstName": "Dorothy", "id": 65, "interests": "Uganda, telecommunications, internet, students, research", "lastName": "Okello", "proximity": 5, "userId": 1}, {"deleted_at": null, "firstName": "Gil", "id": 66, "interests": "wireless networks, telecommunication, columbia, internet, electrical engineering", "lastName": "Zussman", "proximity": 3, "userId": 1}, {"deleted_at": null, "firstName": "Brian", "id": 67, "interests": "Columbia, Columbia, DNS, DHCP, networks, measuring networks, traceroute", "lastName": "Goodchild", "proximity": 8, "userId": 1}, {"deleted_at": null, "firstName": "Kerstin", "id": 68, "interests": "NGO, Guatemala, nutritional supplements, mircobiology, travel", "lastName": "Klein", "proximity": 8, "userId": 1}, {"deleted_at": null, "firstName": "Josue", "id": 69, "interests": "software, Guatemala, tec 2, travel, freelance, development", "lastName": "", "proximity": 8, "userId": 1}, {"deleted_at": null, "firstName": "Luis", "id": 70, "interests": "Murder, drugs, fetishes, germany, berlin, music", "lastName": "Suarez", "proximity": 8, "userId": 1}, {"deleted_at": null, "firstName": "Elizabeth", "id": 71, "interests": "textiles, sustainable development, guatemala, fashion, indigenous, artisan, poverty, developing country", "lastName": "Rose", "proximity": 3, "userId": 1}, {"deleted_at": null, "firstName": "Luis", "id": 72, "interests": "HCI, HCI for chilldren, Education, Higher Education", "lastName": "Ayala", "proximity": 8, "userId": 1}, {"deleted_at": null, "firstName": "Allison", "id": 73, "interests": "cooking, reading, poetry", "lastName": "Reid (Randolph's aunt)", "proximity": 5, "userId": 1}, {"deleted_at": null, "firstName": "Randolph", "id": 76, "interests": "Florida, law, courts, appeals circuit, ", "lastName": "McKinnie", "proximity": 8, "userId": 1}]
+    ));
 });
+
+
 

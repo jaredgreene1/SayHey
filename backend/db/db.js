@@ -6,7 +6,7 @@ function runQuery(query, values) {
   return new Promise((resolve, reject) => {
     mysql.createConnection(config).then( (con) => {
       con.query(query, values).then( result => {
-        resolve(result)
+        resolve(JSON.parse(JSON.stringify(result))) //hackey cast from RowDataPackets to objects 
         con.end()
       });
     });
