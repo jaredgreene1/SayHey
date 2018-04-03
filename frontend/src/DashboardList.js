@@ -5,7 +5,8 @@ import RipeContactCard from './RipeContactCard';
 
 const list = {
   display: 'flex',
-  flexDirection: 'column',
+  flexDirection: 'row',
+  flexWrap: 'wrap',
   width: 'auto',
 }
 

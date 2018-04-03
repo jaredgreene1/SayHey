@@ -24,50 +24,71 @@ const name = {
   color: "#333",
 }
 
-const outerDiv = {
+const unhoverOuterDiv = {
+  display: 'flex',
+  flexDirection: 'column',
+  height: 'auto',
+  width: 'auto',
+  maxWidth: '500px',
+  padding: '10px',
+  margin: '5px',
+  borderBottom: '0.2px solid rgba(165, 192, 236, 0.54)',
+  boxShadow: '0 0 0 .5pt rgb(70, 130, 180)',
+  borderRadius: '25px',
+  justifyContent: 'center',
+}
+
+
+const hoverOuterDiv = {
   display: 'flex',
   flexDirection: 'column',
   height: "auto",
   width: "auto",
-  marginBottom: '15px',
+  maxWidth: '500px',
+  padding: '10px',
+  margin: '5px',
   borderBottom: '0.2px solid rgba(165, 192, 236, 0.54)',
+  boxShadow: '.5px .5px 5px .5pt rgb(70, 130, 180)',
+  borderRadius: '25px',
+  justifyContent: 'center',
 }
+
 
 const contactInfoDiv = {
   display: 'flex',
-  flexDirection: 'row',
+  flexDirection: 'column',
+  border: '10px',
   height: "auto",
   width: "auto",
   alignItems: 'center',
+  cursor: 'pointer',
 }
   
 const badgeDiv = {
-    display: 'flex',
-    height: '40px',
-    width: '40px',
-    justifyContent: 'center',
-    background: '#e0e0e069',
-    borderRadius: '100%',
-    marginRight: '20px',
+  display: 'flex',
+  height: '100px',
+  width: '100px',
+  justifyContent: 'center',
+  background: '#e0e0e069',
+  borderRadius: '100%',
 }
 
 const badgeText = {
-  fontSize: '30',
+  fontSize: 80,
   alignSelf: 'center',
   color: '#908e8e',
-  font: 'icon',
-  
+  fontFamily: 'serif',
 }
 
 const buttonDiv = {
   display: 'flex',
   alignItems: 'center',
-  minWidth: '300px',
   justifyContent: 'space-between'
 }
 
 const contactDiv = {
   display: 'flex',
+  flexDirection: 'column',
   justifyContent: 'space-between',
 }
 
@@ -79,7 +100,10 @@ const articleButton = {
 export default class RipeContactCard extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {articles: []};
+    this.state = {
+      articles: [],
+      expanded: false
+    };
   };
 
   componentDidMount() {
@@ -106,26 +130,40 @@ export default class RipeContactCard extends React.Component {
     showArticles: false
   }));
 
+  expandCard = () => this.setState(prevState => ({
+    expanded: !prevState.expanded,
+    showArticles: false,
+    logComm: false
+  }));
+
+  onHover = () => this.setState({hovered: true});
+  onUnhover = () => this.setState({hovered: false});
+  onUnhover = () => this.setState({hovered: false});
+  getStyle = () => this.state.hovered ? hoverOuterDiv : unhoverOuterDiv; 
+
 
   render() {
     return (
-      <div name='outerDiv' style={outerDiv}>
+      <div name='outerDiv' onMouseOver={this.onHover} onMouseOut={this.onUnhover} style={this.getStyle()}>
         <div name='contactDiv' style={contactDiv}>
-          <div name='contactInfoDiv' style={contactInfoDiv}>
+          <div name='contactInfoDiv' onClick={this.expandCard} style={contactInfoDiv}>
             <ContactBadge fName={this.props.contactInfo['firstName']} />
             <p style={name}> {this.props.contactInfo['firstName']} {this.props.contactInfo['lastName']} </p>
           </div>
-          <div style={buttonDiv}>
+          { this.state.expanded ?
+            <div name='buttonDiv' style={buttonDiv} >
+              <Button style={articleButton} 
+                callback={this.toggleArticles}
+                text={"Articles for " + this.props.contactInfo['firstName']}
+              /> 
+              
+              <Button style={articleButton} 
+                callback={this.toggleComm}
+                text={"Spoke to " + this.props.contactInfo['firstName'] + '?'}
+              /> 
+            </div> : null
+          }
 
-            <Button style={articleButton} callback={this.toggleArticles}
-              text={"Content for " + this.props.contactInfo['firstName']}
-            />
-
-            <Button style={articleButton} callback={this.toggleComm}
-              text={"Spoke to " + this.props.contactInfo['firstName'] + '?'}
-            />
-
-          </div>
         </div>
       { this.state.showArticles ? 
         <div className="articles-container" style={articleDiv}>
@@ -153,7 +191,7 @@ class ContactBadge extends React.Component {
   render() {
     return ( 
       <div style={badgeDiv}>
-        <p style={badgeText}> {this.props.fName[0]} </p>
+        <p style={badgeText}> {this.props.fName[0].toLowerCase()} </p>
       </div>
     )
   }
