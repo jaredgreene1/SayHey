@@ -150,19 +150,21 @@ export default class RipeContactCard extends React.Component {
             <ContactBadge fName={this.props.contactInfo['firstName']} />
             <p style={name}> {this.props.contactInfo['firstName']} {this.props.contactInfo['lastName']} </p>
           </div>
-          { this.state.expanded ?
             <div name='buttonDiv' style={buttonDiv} >
+            { this.state.expanded && this.state.articles.length ?
               <Button style={articleButton} 
                 callback={this.toggleArticles}
                 text={"Articles for " + this.props.contactInfo['firstName']}
-              /> 
-              
+              /> : null 
+
+            }
+            { this.state.expanded ?
               <Button style={articleButton} 
                 callback={this.toggleComm}
                 text={"Spoke to " + this.props.contactInfo['firstName'] + '?'}
-              /> 
-            </div> : null
-          }
+              /> : null 
+            }
+            </div>
 
         </div>
       { this.state.showArticles ? 
