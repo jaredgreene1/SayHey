@@ -135,6 +135,10 @@ class ContactInput extends React.Component {
             <option value='5'> 5 </option>
             <option value='8'> 8 </option>
             <option value='13'> 13 </option>
+            <option value='21'> 21 </option>
+            <option value='34'> 34 </option>
+            <option value='365'> Always </option>
+
           </select>
         </ div> 
         
