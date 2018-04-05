@@ -11,7 +11,7 @@ const url = 'http://localhost:3001/contacts/read'
 
 const list = {
   display: 'flex',
-  flexDirection: 'row',
+  flexDirection: 'column',
   flexWrap: 'wrap'
 }
 
@@ -49,20 +49,18 @@ class ContactList extends React.Component {
         { this.state.newContact ? <ContactInput callback={this.loadContacts}/> : null}
         <Button text="Add new contact" callback={this.AddContact}/>
         { !this.state.contacts ? <p> Loading contacts... </p> :
-          <table style={list}> 
-            <tbody>
-              {
-                Object.keys(this.state.contacts).map(function(contactKey) {
-                  return (
-                    <ContactData key={contactKey} 
-                      contactInfo={this.state.contacts[contactKey]} 
-                      refreshList={this.loadContacts}
-                    />
-                 ) 
-                }.bind(this))
-              }
-            </tbody>
-          </table>
+          <div style={list}> 
+            {
+              Object.keys(this.state.contacts).map(function(contactKey) {
+                return (
+                  <ContactData key={contactKey} 
+                    contactInfo={this.state.contacts[contactKey]} 
+                    refreshList={this.loadContacts}
+                  />
+               ) 
+              }.bind(this))
+            }
+          </div>
         }
       </div>
     );

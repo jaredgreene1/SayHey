@@ -1,25 +1,58 @@
 import React from 'react';
 
 
-const button = {
+const unhoverButton = {
   display: 'flex',
   borderRadius: '10px',
-  margin: '2',
+  margin: '0px 2px 0px 2px',
   border: '0',
   padding: '7px',
   background: '#ebeeff',
-  height: 'fit-content'
+  height: 'fit-content',
+  cursor: 'pointer',
 }
 
+const hoverButton = {
+  display: 'flex',
+  borderRadius: '10px',
+  margin: '0px 2px 0px 2px',
+  border: '0',
+  padding: '7px',
+  background: 'rgb(70, 130, 180)',
+  height: 'fit-content',
+  color: 'white',
+  cursor: 'pointer',
+}
 
 class Button extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      hovered: false
+    }
   }
+
+  onHover = () => this.setState({hovered: true});
+  onUnhover = () => this.setState({hovered: false});
+  
+  getStyle = () => {
+    if (this.state.hovered)
+      return hoverButton 
+    else
+      return unhoverButton
+  }
+
 
   render() {
     return (
-      <button style={button} onClick={this.props.callback}> {this.props.text} </button>
+      <button 
+        style={this.getStyle()} 
+        onMouseOver={this.onHover}
+        onMouseOut={this.onUnhover}
+        onClick={this.props.callback}
+      > 
+        {this.props.text} 
+      </button>
     );
   }
 }

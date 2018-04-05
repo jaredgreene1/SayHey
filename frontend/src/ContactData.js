@@ -3,26 +3,35 @@ import ContactInput from './ContactInput.js';
 import { EditButton, DeleteContactButton } from './Buttons.js';
 
 const hover = {
-  background: "#d1e3f3",
-  maxWidth: "700px",
-  padding: "20px",
-  borderRadius: "25px",
-  margin: "10px",
+  display: 'flex',
+  flexFlow: 'row wrap',
+  alignItems: 'center',
+  maxWidth: "500px",
+  borderRadius: "15px",
+  margin: "2px",
   height: 'auto',
+  borderRadius: '15px',
+  boxShadow: '0px 0px 0px 1pt rgb(70, 129, 180)',
 }
 
 
 const unhover = {
-  background: "#8ac1f1",
-  maxWidth: "700px",
-  padding: "20px",
-  borderRadius: "25px",
-  margin: "10px",
-  height: 'auto'
+  display: 'flex',
+  flexFlow: 'row wrap',
+  alignItems: 'center',
+  maxWidth: "500px",
+  borderRadius: "15px",
+  margin: "2px",
+  height: 'auto',
+  borderRadius: '15px',
+  boxShadow: '0px 0px 0px 0.5pt rgb(70, 129, 180)',
 }
 
 
-const name = {textAlign: "center",}
+const name = {
+  flexGrow: "1",
+  paddingLeft: '5',
+}
 
 
 class ContactCard extends React.Component {
@@ -39,11 +48,11 @@ class ContactCard extends React.Component {
 
   render() {
     return (
-      <tr className="contact-card" onMouseOut={this.onUnhover} onMouseOver={this.onHover} style={this.getStyle()}>
-        <td> {this.props.contactInfo['firstName']} {this.props.contactInfo['lastName']} </td>
-        <td> <EditButton contactInfo={this.props.contactInfo} /> </td>
-        <td> <DeleteContactButton contactInfo={this.props.contactInfo} cb={this.props.refreshList}/> </td>
-      </tr>
+      <div className="contact-card" onMouseOut={this.onUnhover} onMouseOver={this.onHover} style={this.getStyle()}>
+        <p style={name}> {this.props.contactInfo['firstName']} {this.props.contactInfo['lastName']} </p>
+        <EditButton contactInfo={this.props.contactInfo} />
+        <DeleteContactButton contactInfo={this.props.contactInfo} cb={this.props.refreshList}/>
+      </div>
     );
   }
 }
