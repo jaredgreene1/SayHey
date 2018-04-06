@@ -9,7 +9,11 @@ rss_feeds = {
     'economist_corp-governance': 'http://www.economist.com/topics/corporate-governance/index.xml',
     'science-daily_engineering': 'https://www.sciencedaily.com/rss/matter_energy/engineering.xml',
     'tech-crunch_startups': 'http://feeds.feedburner.com/TechCrunch/startups',
-    'aljazeera': 'https://www.aljazeera.com/xml/rss/all.xml'
+    'aljazeera': 'https://www.aljazeera.com/xml/rss/all.xml',
+    'atlant-life-and-culture': 'http://artsculture.blog.ajc.com/feed',
+    'pop-culture': 'http://popculturebrain.com/rss',
+    'gq-culture': 'http://www.gq.com/news-culture/rss',
+    'daxco-culture': 'http://daxko.com/blog/category/culture/feed'
 }
 
 
