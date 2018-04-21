@@ -1,12 +1,12 @@
 #!/bin/bash
 
-cd ~/touchpoint/frontend
+cd ~/SayHey/frontend
 npm start &
 
-cd ~/touchpoint/backend
+cd ~/SayHey/backend
 npm start &
 
 cd ./rss-svc
 python3 server.py &
 
-cd ~/touchpoint
+cd ~/SayHey

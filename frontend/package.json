@@ -1,5 +1,5 @@
 {
-  "name": "touchpoint",
+  "name": "SayHey",
   "version": "1.0.0",
   "description": "Touchpoint Software",
   "main": "index.js",
@@ -13,12 +13,12 @@
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jaredgreene1/touchpoint.git"
+    "url": "git+https://github.com/jaredgreene1/SayHey.git"
   },
   "bugs": {
-    "url": "https://github.com/jaredgreene1/touchpoint/issues"
+    "url": "https://github.com/jaredgreene1/SayHey/issues"
   },
-  "homepage": "https://github.com/jaredgreene1/touchpoint#readme",
+  "homepage": "https://github.com/jaredgreene1/SayHey#readme",
   "dependencies": {
     "axios": "^0.17.1",
     "babel-core": "^6.26.0",
