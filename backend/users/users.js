@@ -2,10 +2,28 @@ const crypto = require('crypto')
 const db = require('../db/db')
 
 function create(userData){
- const salt = crypto.randomBytes(256);
+  console.log("NEW USER: ")
+  console.log(userData)
+ //const salt = crypto.randomBytes(256);
+ const salt = "hello"
  userData.password = hashPass(userData.password + salt)
  userData.salt = salt
  db.createUser(userData)
+}
+
+async function validate(credentials){
+  console.log("VALIDATING USER: ")
+  console.log(credentials)
+ const dbReturn = await db.readUserData(credentials.email)
+ const userData = dbReturn[0]
+ console.log(userData)
+ if (userData.password === hashPass(credentials.password + userData.salt)) {
+   console.log("successful login")
+   return userData.id
+ } else {  
+    console.log("unsuccessful login")
+    return null
+  }
 }
 
 const hashPass = (pass) => {
@@ -15,5 +33,6 @@ const hashPass = (pass) => {
 }
 
 module.exports = {
-  create
+  create,
+  validate
 }
