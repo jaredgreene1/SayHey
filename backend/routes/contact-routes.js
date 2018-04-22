@@ -1,4 +1,4 @@
-const contacts = require('../contacts.js')
+const contacts = require('../contacts/contacts.js')
 
 const baseUrl = '/contacts'
 

@@ -6,7 +6,7 @@ const app = express();
 app.use(cors());
 
 app.use(bodyParser.json());
-require('./contacts/routes')(app, {});
+require('./routes')(app, {});
 
 
 const server = app.listen(3001, function() {
