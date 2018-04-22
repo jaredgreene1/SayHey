@@ -1,4 +1,6 @@
 #!/bin/bash
+cd ~/SayHey
+. kill_all.sh
 
 cd ~/SayHey/frontend
 npm start &
