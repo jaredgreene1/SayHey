@@ -1,0 +1,12 @@
+CREATE TABLE Users (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  firstName VARCHAR(124) NOT NULL, 
+  lastName VARCHAR(124) NOT NULL,
+  email VARCHAR(512) NOT NULL UNIQUE,
+  password VARCHAR(512) NOT NULL,
+  salt VARCHAR(512) NOT NULL,
+  deleted_at TIMESTAMP null
+)
+
+
+

@@ -48,11 +48,26 @@ function readContactEventsByContactId(contactID) {
   return runQuery(query, [contactID]);
 }
 
+//************* User queries ********************
+
+function createUser(data) {
+  const query = 'INSERT INTO Users (firstName, lastName, email, password, salt) VALUES (?)'
+  const values = [data.firstName, data.lastName, data.email, data.password, data.salt]
+  return runQuery(query, [values]);
+}
+
+function readUserData(email) {
+  const query = 'SELECT * from Users WHERE email = ? AND deleted_at is NULL'  
+  return runQuery(query, [email])
+}
+
 module.exports = {
   createContact,
   readContactsByUserId,
   updateContact,
   createCommEvent,
   readContactEventsByContactId,
-  deleteContact
+  deleteContact,
+  createUser,
+  readUserData
 }

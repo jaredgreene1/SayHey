@@ -1,5 +1,7 @@
 import React from 'react';
 import axios from 'axios';
+import crypto from 'crypto';
+
 
 import { Button } from '../Buttons';
 import { signupUrl } from '../../endpoints';
@@ -50,6 +52,9 @@ class SignupForm extends React.Component {
   handleSubmit = (event) => {
     event.preventDefault();
     console.log("Submitting from with values: " + this.state)
+    let hasher = crypto.createHash('sha256')
+    hasher.update(this.state.password)
+    this.state.password = hasher.digest('hex')
    
     return axios({
       method: 'post',
